@@ -443,48 +443,58 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
-        public decimal LayDiemTrungBinhTichLuySinhVien(int maSinhVien)
+        /// <summary>
+        /// Hàm tính điểm trung bình tích lũy của một sinh viên dựa trên mã sinh viên.
+        /// </summary>
+        /// <param name="maSinhVien">Mã sinh viên cần tính điểm trung bình tích lũy.</param>
+        /// <returns>Trả về điểm trung bình tích lũy của sinh viên. Nếu có lỗi xảy ra, trả về 0.</returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public decimal TinhDiemTrungBinhTichLuy(int maSinhVien)
         {
             try
             {
-                decimal diemTrungBinh = 0; // Khởi tạo biến để lưu kết quả
-                string connectionString = QLDSVCNTTConnection.connectionString; // Chuỗi kết nối đến SQL Server
+                decimal diemTrungBinhTichLuy = 0; // Khởi tạo giá trị ban đầu
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                // Chuỗi kết nối đến cơ sở dữ liệu
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
                 {
                     connection.Open();
-                    // Truy vấn để gọi hàm TinhDiemTrungBinh từ SQL Server
-                    string query = "SELECT dbo.fn_TinhDiemTrungBinhTichLuy(@MaSinhVien)";
 
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    // Tạo lệnh gọi hàm fn_TinhDiemTrungBinhTichLuy
+                    using (SqlCommand cmd = new SqlCommand("SELECT dbo.fn_TinhDiemTrungBinhTichLuy(@MaSinhVien)", connection))
                     {
-                        // Thêm tham số maSinhVien
+                        // Thêm tham số mã sinh viên
                         cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
 
-                        // Thực thi lệnh và lấy giá trị trả về của function
+                        // Thực thi lệnh và lấy kết quả trả về
                         object result = cmd.ExecuteScalar();
 
-                        // Kiểm tra giá trị trả về không null
-                        if (result != DBNull.Value)
+                        // Nếu kết quả không null, gán vào biến điểm trung bình tích lũy
+                        if (result != null && result != DBNull.Value)
                         {
-                            diemTrungBinh = Convert.ToDecimal(result);
+                            diemTrungBinhTichLuy = Convert.ToDecimal(result);
                         }
                     }
                 }
 
-                return diemTrungBinh; // Trả về điểm trung bình
+                return diemTrungBinhTichLuy;
             }
-            catch (SqlException)
+            catch (SqlException ex)
             {
-                throw;
+                // Xử lý lỗi SQL
+                throw new Exception($"SQL Error: {ex.Message}");
             }
             catch (Exception ex)
             {
+                // Xử lý các lỗi khác
                 throw new Exception($"Error: {ex.Message}");
             }
         }
-
-
 
 
     }
