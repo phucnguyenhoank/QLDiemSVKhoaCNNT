@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /QLDiemSVKhoaCNNT/Program.cs
 /QLDiemSVKhoaCNNT/DBConnection/QLDSVCNTTConnection.cs
+/QLDiemSVKhoaCNNT/Program.cs
+/QLDiemSVKhoaCNNT/DBConnection/QLDSVCNTTConnection.cs
