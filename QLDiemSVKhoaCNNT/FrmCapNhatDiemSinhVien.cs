@@ -17,7 +17,7 @@ namespace QLDiemSVKhoaCNNT
         public FrmCapNhatDiemSinhVien()
         {
             InitializeComponent();
-            LoadLopHoc();
+            
         }
 
         private void LoadLopHoc()
@@ -29,6 +29,8 @@ namespace QLDiemSVKhoaCNNT
                 cbxMaLopHoc.DisplayMember = "MaLopHoc";
                 cbxMaLopHoc.ValueMember = "MaLopHoc";
                 cbxMaLopHoc.SelectedIndex = 0;
+                FunctionDAL functionDAL = new FunctionDAL();
+                dgvSinhVienCuaLop.DataSource = functionDAL.LayDanhSachSinhVienTrongLop(1);
             }
             catch (Exception ex)
             {
@@ -38,14 +40,12 @@ namespace QLDiemSVKhoaCNNT
 
         private void cbxMaLopHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LopHoc selectedLopHoc = cbxMaLopHoc.SelectedItem as LopHoc;
-            if (selectedLopHoc != null)
+            int maLH;
+            if (Int32.TryParse(cbxMaLopHoc.SelectedValue.ToString(), out maLH))
             {
-                int maLopHoc = selectedLopHoc.MaLopHoc;
-
                 // Gọi phương thức lấy danh sách sinh viên trong lớp
                 FunctionDAL functionDAL = new FunctionDAL();
-                dgvSinhVienCuaLop.DataSource = functionDAL.LayDanhSachSinhVienTrongLop(maLopHoc);
+                dgvSinhVienCuaLop.DataSource = functionDAL.LayDanhSachSinhVienTrongLop(maLH);
             }
 
         }
@@ -88,7 +88,7 @@ namespace QLDiemSVKhoaCNNT
 
         private void FrmCapNhatDiemSinhVien_Load(object sender, EventArgs e)
         {
-
+            LoadLopHoc();
         }
     }
 }

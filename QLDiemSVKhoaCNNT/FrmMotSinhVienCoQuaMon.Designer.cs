@@ -81,7 +81,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(633, 247);
             Controls.Add(btnKiemTraQuaMon);
             Controls.Add(label2);
             Controls.Add(label1);
