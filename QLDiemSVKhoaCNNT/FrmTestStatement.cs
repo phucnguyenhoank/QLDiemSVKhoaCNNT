@@ -66,8 +66,9 @@ namespace QLDiemSVKhoaCNNT
                 string hoVaTen = "Lê Minh Tân";
                 string email = "tanlm@hcmute.edu.vn";
                 string soDienThoai = "0987654327";
-                ProcedureDAL procedureDAL = new ProcedureDAL();
-                procedureDAL.ThemGiangVien(maGiangVien, hoVaTen, email, soDienThoai);
+                GiangVienDAL giangVienDAL = new GiangVienDAL();
+                giangVienDAL.ThemGiangVien(maGiangVien, hoVaTen, email, soDienThoai);
+                
                 MessageBox.Show($"Them giang vien {maGiangVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
@@ -86,8 +87,8 @@ namespace QLDiemSVKhoaCNNT
             {
                 int maMonHoc = 22111;
 
-                ProcedureDAL procedureDAL = new ProcedureDAL();
-                procedureDAL.XoaMonHoc(maMonHoc);
+                MonHocDAL monHocDAL = new MonHocDAL();
+                monHocDAL.XoaMonHoc(maMonHoc);
                 MessageBox.Show($"Xoa mon hoc {maMonHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
@@ -127,8 +128,8 @@ namespace QLDiemSVKhoaCNNT
             {
                 int maSinhVien = 22110443;
 
-                ProcedureDAL procedureDAL = new ProcedureDAL();
-                procedureDAL.XoaSinhVien(maSinhVien);
+                SinhVienDAL sinhVienDAL = new SinhVienDAL();
+                sinhVienDAL.XoaSinhVien(maSinhVien);
                 MessageBox.Show($"Xoa sinh vien {maSinhVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
@@ -146,9 +147,8 @@ namespace QLDiemSVKhoaCNNT
             try
             {
                 int maGiangVien = 7;
-
-                ProcedureDAL procedureDAL = new ProcedureDAL();
-                procedureDAL.SuaGiangVien(maGiangVien, "Lê Minh Tân", "tanlm@hcmute.edu.vnnn", "0999999999");
+                GiangVienDAL giangVienDAL = new GiangVienDAL();
+                giangVienDAL.SuaGiangVien(maGiangVien, "Lê Minh Tân", "tanlm@hcmute.edu.vnnn", "0999999999");
                 MessageBox.Show($"Sua giang vien {maGiangVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
@@ -188,8 +188,8 @@ namespace QLDiemSVKhoaCNNT
                 int maMonHoc = 1430011;
                 string tenMonHoc = "DSTT";
                 byte soTinChi = 3;
-                ProcedureDAL procedureDAL = new ProcedureDAL();
-                procedureDAL.ThemMonHoc(maMonHoc, tenMonHoc, soTinChi);
+                MonHocDAL monHocDAL = new MonHocDAL();
+                monHocDAL.ThemMonHoc(maMonHoc, tenMonHoc, soTinChi);
                 MessageBox.Show($"Them mon hoc {maMonHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
@@ -207,9 +207,9 @@ namespace QLDiemSVKhoaCNNT
             try
             {
                 int maSinhVien = 22110400;
-
-                ProcedureDAL procedureDAL = new ProcedureDAL();
-                procedureDAL.SuaSinhVien(maSinhVien, "Sam Nguyễn", "aaa2gmail.com", "5544778", "Sơn hòa");
+                
+                SinhVienDAL sinhVienDAL = new SinhVienDAL();
+                sinhVienDAL.SuaSinhVien(maSinhVien, "Sam Nguyễn", "aaa2gmail.com", "5544778", "Sơn hòa");
                 MessageBox.Show($"Sua sinh vien {maSinhVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
