@@ -377,29 +377,87 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+
+        /// <summary>
+        /// Lấy danh sách xếp hạng sinh viên từ view vw_XepHangSinhVienBangDiemTBTichLuy.
+        /// </summary>
+        /// <returns>
+        /// Trả về một DataTable chứa danh sách xếp hạng sinh viên gồm các cột như:
+        /// <br>- MaSinhVien: Mã sinh viên</br>
+        /// <br>- HoVaTen: Họ và tên sinh viên</br>
+        /// <br>- SoTinChiDaHoanThanh: Số tín chỉ đã hoàn thành</br>
+        /// <br>- DiemTrungBinh: Điểm trung bình tích lũy</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception
         public DataTable GetViewXepHangSinhVien()
         {
             try
             {
-                DataTable DanhSachMonHocDangKy = new DataTable();
+                DataTable DanhSachXepHang = new DataTable();
                 using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
                 {
                     connection.Open();
-                    string querry = "select * from vw_XepHangSinhVien";
-                    using (SqlCommand command = new SqlCommand(querry, connection))
+                    using (SqlCommand command = new SqlCommand("select * from vw_XepHangSinhVien", connection))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
-                            adapter.Fill(DanhSachMonHocDangKy);
+                            adapter.Fill(DanhSachXepHang);
                         }
                     }
-                    connection.Close();
                 }
-                return DanhSachMonHocDangKy;
+                return DanhSachXepHang;
             }
-            catch (SqlException sqlEx)
+            catch (SqlException)
             {
-                throw new Exception(sqlEx.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Cập nhật điểm quá trình và điểm cuối kỳ cho sinh viên trong lớp học.
+        /// </summary>
+        /// <param name="maSV">Mã số sinh viên cần cập nhật điểm.</param>
+        /// <param name="maLH">Mã lớp học mà sinh viên đã đăng ký.</param>
+        /// <param name="diemGK">Điểm quá trình (giữa kỳ) cần cập nhật.</param>
+        /// <param name="diemCK">Điểm cuối kỳ cần cập nhật.</param>
+        /// <returns>
+        /// Trả về số lượng dòng bị ảnh hưởng (nếu cập nhật thành công).
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc thực thi câu lệnh SQL.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi chung khác.
+        /// </exception>
+        public int capNhatDiem(int maSV, int maLH, decimal diemGK, decimal diemCK)
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    connection.Open();
+
+                    using (SqlCommand command = new SqlCommand("proc_CapNhatDiemSinhVien", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.Add(new SqlParameter("@MaSinhVien", maSV));
+                        command.Parameters.Add(new SqlParameter("@MaLopHoc", maLH));
+                        command.Parameters.Add(new SqlParameter("@DiemQuaTrinh", diemGK));
+                        command.Parameters.Add(new SqlParameter("@DiemCuoiKy", diemCK));
+                        return command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
             }
             catch (Exception ex)
             {
