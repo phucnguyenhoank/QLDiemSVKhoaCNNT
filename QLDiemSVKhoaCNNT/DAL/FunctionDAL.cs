@@ -184,8 +184,6 @@ namespace QLDiemSVKhoaCNNT.DAL
         /// <br>- DiemCuoiKy: Điểm cuối kỳ.</br>
         /// <br>- DiemTrungBinh: Điểm trung bình môn.</br>
         /// <br>- XepLoaiMon: Xếp loại môn học.</br>
-        /// <br>- DiemTrungBinhHocKy: Điểm trung bình học kỳ.</br>
-        /// <br>- XepLoaiHocKy: Xếp loại học kỳ.</br>
         /// </returns>
         /// <exception cref="SqlException">
         /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
@@ -210,9 +208,7 @@ namespace QLDiemSVKhoaCNNT.DAL
                         DiemQuaTrinh, 
                         DiemCuoiKy, 
                         DiemTrungBinh, 
-                        XepLoaiMon, 
-                        DiemTrungBinhHocKy, 
-                        XepLoaiHocKy 
+                        XepLoaiMon 
                     FROM dbo.fn_LayBangDiemSinhVien(@MaSinhVien)";
 
                     using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -237,6 +233,165 @@ namespace QLDiemSVKhoaCNNT.DAL
                 throw new Exception($"Error: {ex.Message}");
             }
         }
+
+        /// <summary>
+        /// Lấy điểm trung bình của sinh viên dựa trên mã sinh viên.
+        /// </summary>
+        /// <param name="maSinhVien">Mã sinh viên cần tính điểm trung bình.</param>
+        /// <returns>
+        /// Trả về điểm trung bình (decimal) của sinh viên.
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public decimal LayDiemTrungBinhSinhVien(int maSinhVien)
+        {
+            try
+            {
+                decimal diemTrungBinh = 0; // Khởi tạo biến để lưu kết quả
+                string connectionString = QLDSVCNTTConnection.connectionString; // Chuỗi kết nối đến SQL Server
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    // Truy vấn để gọi hàm TinhDiemTrungBinh từ SQL Server
+                    string query = "SELECT dbo.fn_TinhDiemTrungBinh(@MaSinhVien)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Thêm tham số maSinhVien
+                        cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
+
+                        // Thực thi lệnh và lấy giá trị trả về của function
+                        object result = cmd.ExecuteScalar();
+
+                        // Kiểm tra giá trị trả về không null
+                        if (result != DBNull.Value)
+                        {
+                            diemTrungBinh = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+
+                return diemTrungBinh; // Trả về điểm trung bình
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Tính phần trăm sinh viên qua môn trong một lớp học.
+        /// </summary>
+        /// <param name="maLopHoc">Mã lớp học cần tính phần trăm qua môn.</param>
+        /// <returns>
+        /// Trả về phần trăm qua môn (decimal, từ 0 đến 100) của lớp học.
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public decimal TinhPhanTramQuaMon(int maLopHoc)
+        {
+            try
+            {
+                decimal phanTramQuaMon = 0;
+                string connectionString = QLDSVCNTTConnection.connectionString;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string query = "SELECT dbo.fn_TinhPhanTramQuaMon(@MaLopHoc)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@MaLopHoc", maLopHoc);
+
+                        object result = cmd.ExecuteScalar();
+
+                        // Kiểm tra giá trị trả về không null
+                        if (result != DBNull.Value)
+                        {
+                            phanTramQuaMon = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+
+                return phanTramQuaMon;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Xem học lực của một sinh viên dựa vào điểm trung bình các môn đã đăng ký.
+        /// </summary>
+        /// <param name="maSinhVien">Mã sinh viên cần xem học lực.</param>
+        /// <returns>
+        /// Trả về chuỗi học lực của sinh viên:
+        /// <br>- Giỏi</br>
+        /// <br>- Khá</br>
+        /// <br>- Trung Bình</br>
+        /// <br>- Yếu</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public string XemHocLucSinhVien(int maSinhVien)
+        {
+            try
+            {
+                string hocLuc = string.Empty;
+
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT dbo.fn_XemHocLucSinhVien(@MaSinhVien) AS HocLuc";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
+
+                        object result = cmd.ExecuteScalar();
+                        if (result != null)
+                        {
+                            // ?? nghĩa là nếu result.ToString() trả về null thì sẽ trả về "Yếu", lí do là vì kiểu dữ liệu string của hocLuc không chấp nhận giá trị null
+                            hocLuc = result.ToString() ?? "Yếu"; 
+                        }
+                    }
+                }
+
+                return hocLuc;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
 
 
     }

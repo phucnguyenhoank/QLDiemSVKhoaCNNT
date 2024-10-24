@@ -321,19 +321,17 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+
         /// <summary>
-        /// Lấy danh sách điểm tổng kết theo học kỳ từ view vw_DiemTongKetTheoHocKy.
+        /// Lấy danh sách các lớp học còn trống và số lượng chỗ trống.
         /// </summary>
         /// <returns>
-        /// Một bảng chứa thông tin của toàn bộ sinh viên và điểm tổng kết theo học kỳ gồm các cột:
-        /// <br>- MaSinhVien</br>
-        /// <br>- HoVaTen</br>
+        /// Trả về một DataTable chứa thông tin các lớp học còn trống sinh viên, bao gồm các cột:
         /// <br>- MaLopHoc</br>
-        /// <br>- MaMonHoc</br>
-        /// <br>- DiemQuaTrinh</br>
-        /// <br>- DiemCuoiKy</br>
-        /// <br>- DiemTrungBinhMon</br>
-        /// <br>- XepLoai</br>
+        /// <br>- MaPhongHoc</br>
+        /// <br>- SucChua</br>
+        /// <br>- SoSinhVienDaDangKy</br>
+        /// <br>- SoLuongConTrong</br>
         /// </returns>
         /// <exception cref="SqlException">
         /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
@@ -341,36 +339,33 @@ namespace QLDiemSVKhoaCNNT.DAL
         /// <exception cref="Exception">
         /// Ném ra khi có lỗi khác không xác định xảy ra.
         /// </exception>
-        public DataTable GetDanhSachDiemTongKetTheoHocKy()
+        public DataTable GetDanhSachLopHocConTrong()
         {
             try
             {
-                DataTable danhSachDiemTongKet = new DataTable();
+                DataTable danhSachLopHocConTrong = new DataTable();
 
                 using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
                 {
                     connection.Open();
                     string query = @"SELECT 
-                                MaSinhVien, 
-                                HoVaTen, 
                                 MaLopHoc, 
-                                MaMonHoc, 
-                                DiemQuaTrinh, 
-                                DiemCuoiKy, 
-                                DiemTrungBinhMon, 
-                                XepLoai 
-                            FROM vw_DiemTongKetTheoHocKy";
+                                MaPhongHoc, 
+                                SucChua, 
+                                SoSinhVienDaDangKy, 
+                                SoLuongConTrong 
+                             FROM vw_LopHocConTrong";
 
                     using (SqlCommand cmd = new SqlCommand(query, connection))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                         {
-                            adapter.Fill(danhSachDiemTongKet);
+                            adapter.Fill(danhSachLopHocConTrong);
                         }
                     }
                 }
 
-                return danhSachDiemTongKet;
+                return danhSachLopHocConTrong;
             }
             catch (SqlException)
             {
@@ -382,42 +377,35 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
-        public List<PhongHoc> GetPhongHocConTrong()
+        public DataTable GetViewXepHangSinhVien()
         {
-            string connectionString = QLDSVCNTTConnection.connectionString;
-            string query = "SELECT MaPhongHoc, SucChua FROM vw_PhongHocConTrong";
-            List<PhongHoc> phongHocList = new List<PhongHoc>();
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            try
             {
-                try
+                DataTable DanhSachMonHocDangKy = new DataTable();
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
                 {
                     connection.Open();
-
-                    using (SqlCommand command = new SqlCommand(query, connection))
+                    string querry = "select * from vw_XepHangSinhVien";
+                    using (SqlCommand command = new SqlCommand(querry, connection))
                     {
-                        using (SqlDataReader reader = command.ExecuteReader())
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
-                            while (reader.Read())
-                            {
-                                PhongHoc phongHoc = new PhongHoc(
-                                    reader.GetInt32(0),  // MaPhongHoc
-                                    reader.GetByte(1)    // SucChua
-                                );
-                                phongHocList.Add(phongHoc);
-                            }
+                            adapter.Fill(DanhSachMonHocDangKy);
                         }
                     }
+                    connection.Close();
                 }
-                catch (Exception ex)
-                {
-                    throw new Exception("GetPhongHocConTrong: " + ex.Message);
-                }
+                return DanhSachMonHocDangKy;
             }
-
-            return phongHocList;
+            catch (SqlException sqlEx)
+            {
+                throw new Exception(sqlEx.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
-
 
 
     }

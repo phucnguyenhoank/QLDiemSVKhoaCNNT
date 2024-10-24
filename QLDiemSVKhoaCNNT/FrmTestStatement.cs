@@ -18,8 +18,11 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
+                ProcedureDAL procedureDAL = new ProcedureDAL();
                 ViewDAL viewDAL = new ViewDAL();
-                DataTable dt = viewDAL.GetDanhSachDiemTongKetTheoHocKy();
+                FunctionDAL functionDAL = new FunctionDAL();
+                lblScalarReturnedValue.Text = functionDAL.XemHocLucSinhVien(22110400);
+                DataTable dt = viewDAL.GetViewXepHangSinhVien();
                 dgvReadData.DataSource = dt;
             }
             catch (SqlException sqlEx)
@@ -116,6 +119,132 @@ namespace QLDiemSVKhoaCNNT
             {
                 MessageBox.Show(ex.Message, "Lỗi btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void btnXoaSinhVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maSinhVien = 22110443;
+
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                procedureDAL.XoaSinhVien(maSinhVien);
+                MessageBox.Show($"Xoa sinh vien {maSinhVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSuaGiangVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maGiangVien = 7;
+
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                procedureDAL.SuaGiangVien(maGiangVien, "Lê Minh Tân", "tanlm@hcmute.edu.vnnn", "0999999999");
+                MessageBox.Show($"Sua giang vien {maGiangVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnGiangVienToLop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maGiangVien = 7;
+                int maLophoc = 2;
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                procedureDAL.CapNhatGiangVienVaoLop(maGiangVien, maLophoc);
+                MessageBox.Show($"Phu trach giang vien {maGiangVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnThemMonHoc_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maMonHoc = 1430011;
+                string tenMonHoc = "DSTT";
+                byte soTinChi = 3;
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                procedureDAL.ThemMonHoc(maMonHoc, tenMonHoc, soTinChi);
+                MessageBox.Show($"Them mon hoc {maMonHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSuaSinhVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maSinhVien = 22110400;
+
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                procedureDAL.SuaSinhVien(maSinhVien, "Sam Nguyễn", "aaa2gmail.com", "5544778", "Sơn hòa");
+                MessageBox.Show($"Sua sinh vien {maSinhVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCapNhatDiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maSinhVien = 22110400;
+
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                procedureDAL.CapNhatDiem(maSinhVien, 2211, 10.0M, 10.0M);
+                MessageBox.Show($"Sua sinh vien {maSinhVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi btnGet_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSoTCHoanThanh_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
