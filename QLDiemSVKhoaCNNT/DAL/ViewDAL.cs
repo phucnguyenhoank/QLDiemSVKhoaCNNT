@@ -221,107 +221,6 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
-
-        /// <summary>
-        /// Lấy danh sách điểm trung bình của sinh viên từ view vw_DiemTrungBinhSinhVien.
-        /// </summary>
-        /// <returns>
-        /// Một bảng chứa thông tin về điểm trung bình của sinh viên gồm các cột:
-        /// <br>- MaSinhVien</br>
-        /// <br>- HoVaTen</br>
-        /// <br>- DiemTrungBinh</br>
-        /// </returns>
-        /// <exception cref="SqlException">
-        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
-        /// </exception>
-        /// <exception cref="Exception">
-        /// Ném ra khi có lỗi khác không xác định xảy ra.
-        /// </exception>
-        public DataTable GetViewDiemTrungBinhSinhVien()
-        {
-            try
-            {
-                DataTable danhSachDiemTrungBinh = new DataTable();
-
-                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
-                {
-                    connection.Open();
-                    string query = @"SELECT MaSinhVien, HoVaTen, DiemTrungBinh 
-                             FROM vw_DiemTrungBinhSinhVien";
-
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            adapter.Fill(danhSachDiemTrungBinh);
-                        }
-                    }
-                }
-
-                return danhSachDiemTrungBinh;
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Lấy danh sách điểm trung bình tích lũy của sinh viên từ view vw_DiemTrungBinhTichLuySinhVien.
-        /// </summary>
-        /// <returns>
-        /// Một bảng chứa thông tin về điểm trung bình tích lũy của sinh viên gồm các cột:
-        /// <br>- MaSinhVien</br>
-        /// <br>- HoVaTen</br>
-        /// <br>- DiemTrungBinhTichLuy</br>
-        /// </returns>
-        /// <exception cref="SqlException">
-        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
-        /// </exception>
-        /// <exception cref="Exception">
-        /// Ném ra khi có lỗi khác không xác định xảy ra.
-        /// </exception>
-        public DataTable GetViewDiemTrungBinhTichLuySinhVien()
-        {
-            try
-            {
-                DataTable danhSachDiemTrungBinhTichLuy = new DataTable();
-
-                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
-                {
-                    connection.Open();
-                    string query = @"SELECT 
-                                MaSinhVien, 
-                                HoVaTen, 
-                                DiemTrungBinhTichLuy 
-                             FROM vw_DiemTrungBinhTichLuySinhVien";
-
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            adapter.Fill(danhSachDiemTrungBinhTichLuy);
-                        }
-                    }
-                }
-
-                return danhSachDiemTrungBinhTichLuy;
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error: {ex.Message}");
-            }
-        }
-
-
         /// <summary>
         /// Lấy danh sách các lớp học còn trống và số lượng chỗ trống.
         /// </summary>
@@ -377,36 +276,145 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+        /// <summary>
+        /// Lấy danh sách điểm trung bình của sinh viên từ view vw_DiemTrungBinhSinhVien.
+        /// </summary>
+        /// <returns>
+        /// Một bảng chứa thông tin về điểm trung bình của sinh viên gồm các cột:
+        /// <br>- MaSinhVien</br>
+        /// <br>- HoVaTen</br>
+        /// <br>- DiemTrungBinh</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public DataTable GetViewDiemTrungBinhSinhVien()
+        {
+            try
+            {
+                DataTable danhSachDiemTrungBinh = new DataTable();
+
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT MaSinhVien, HoVaTen, DiemTrungBinh 
+                     FROM vw_DiemTrungBinhSinhVien";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(danhSachDiemTrungBinh);
+                        }
+                    }
+                }
+
+                return danhSachDiemTrungBinh;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Lấy danh sách điểm trung bình tích lũy của sinh viên từ view vw_DiemTrungBinhTichLuySinhVien.
+        /// </summary>
+        /// <returns>
+        /// Một bảng chứa thông tin về điểm trung bình tích lũy của sinh viên gồm các cột:
+        /// <br>- MaSinhVien</br>
+        /// <br>- HoVaTen</br>
+        /// <br>- DiemTrungBinhTichLuy</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public DataTable GetViewDiemTrungBinhTichLuySinhVien()
+        {
+            try
+            {
+                DataTable danhSachDiemTrungBinhTichLuy = new DataTable();
+
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    connection.Open();
+                    string query = @"SELECT 
+                        MaSinhVien, 
+                        HoVaTen, 
+                        DiemTrungBinhTichLuy 
+                     FROM vw_DiemTrungBinhTichLuySinhVien";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(danhSachDiemTrungBinhTichLuy);
+                        }
+                    }
+                }
+
+                return danhSachDiemTrungBinhTichLuy;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
+        /// <summary>
+        /// Lấy danh sách xếp hạng sinh viên từ view vw_XepHangSinhVienBangDiemTBTichLuy.
+        /// </summary>
+        /// <returns>
+        /// Trả về một DataTable chứa danh sách xếp hạng sinh viên gồm các cột như:
+        /// <br>- MaSinhVien: Mã sinh viên</br>
+        /// <br>- HoVaTen: Họ và tên sinh viên</br>
+        /// <br>- SoTinChiDaHoanThanh: Số tín chỉ đã hoàn thành</br>
+        /// <br>- DiemTrungBinh: Điểm trung bình tích lũy</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception
         public DataTable GetViewXepHangSinhVien()
         {
             try
             {
-                DataTable DanhSachMonHocDangKy = new DataTable();
+                DataTable DanhSachXepHang = new DataTable();
                 using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
                 {
                     connection.Open();
-                    string querry = "select * from vw_XepHangSinhVien";
-                    using (SqlCommand command = new SqlCommand(querry, connection))
+                    using (SqlCommand command = new SqlCommand("select * from vw_XepHangSinhVien", connection))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
-                            adapter.Fill(DanhSachMonHocDangKy);
+                            adapter.Fill(DanhSachXepHang);
                         }
                     }
-                    connection.Close();
                 }
-                return DanhSachMonHocDangKy;
+                return DanhSachXepHang;
             }
-            catch (SqlException sqlEx)
+            catch (SqlException)
             {
-                throw new Exception(sqlEx.Message);
+                throw;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-
-
     }
 }
