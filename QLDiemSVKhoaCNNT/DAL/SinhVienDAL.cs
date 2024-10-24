@@ -118,7 +118,7 @@ namespace QLDiemSVKhoaCNNT.DAL
         {
             try
             {
-            {
+            
                 string connectionString = QLDSVCNTTConnection.connectionString;
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {

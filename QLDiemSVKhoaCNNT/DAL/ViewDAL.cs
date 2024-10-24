@@ -397,7 +397,7 @@ namespace QLDiemSVKhoaCNNT.DAL
                 using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
                 {
                     connection.Open();
-                    using (SqlCommand command = new SqlCommand("select * from vw_XepHangSinhVien", connection))
+                    using (SqlCommand command = new SqlCommand("select * from vw_XepHangSinhVienBangDiemTBTichLuy ", connection))
                     {
                         using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
