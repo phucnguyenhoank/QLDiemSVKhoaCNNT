@@ -443,7 +443,46 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+        public decimal LayDiemTrungBinhTichLuySinhVien(int maSinhVien)
+        {
+            try
+            {
+                decimal diemTrungBinh = 0; // Khởi tạo biến để lưu kết quả
+                string connectionString = QLDSVCNTTConnection.connectionString; // Chuỗi kết nối đến SQL Server
 
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    // Truy vấn để gọi hàm TinhDiemTrungBinh từ SQL Server
+                    string query = "SELECT dbo.fn_TinhDiemTrungBinhTichLuy(@MaSinhVien)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Thêm tham số maSinhVien
+                        cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
+
+                        // Thực thi lệnh và lấy giá trị trả về của function
+                        object result = cmd.ExecuteScalar();
+
+                        // Kiểm tra giá trị trả về không null
+                        if (result != DBNull.Value)
+                        {
+                            diemTrungBinh = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+
+                return diemTrungBinh; // Trả về điểm trung bình
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
 
 
 
