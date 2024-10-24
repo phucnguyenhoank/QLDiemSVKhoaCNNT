@@ -272,6 +272,8 @@ namespace QLDiemSVKhoaCNNT.DAL
         /// <br>- Email: Địa chỉ email.</br>
         /// <br>- SoDienThoai: Số điện thoại.</br>
         /// <br>- QueQuan: Quê quán của sinh viên.</br>
+        /// <br>- DiemQuaTrinh: Điểm quá trình của sinh viên.</br>
+        /// <br>- Điểm cuối kỳ: Điểm cuối kỳ của sinh viên.</br>
         /// </returns>
         /// <exception cref="SqlException">
         /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
@@ -294,7 +296,9 @@ namespace QLDiemSVKhoaCNNT.DAL
                         sv.HoVaTen, 
                         sv.Email, 
                         sv.SoDienThoai, 
-                        sv.QueQuan 
+                        sv.QueQuan,
+                        sv.DiemQuaTrinh,
+		                sv.DiemCuoiKy
                     FROM 
                         dbo.fn_LayDanhSachSinhVienTrongLop(@MaLopHoc) AS sv";
 
