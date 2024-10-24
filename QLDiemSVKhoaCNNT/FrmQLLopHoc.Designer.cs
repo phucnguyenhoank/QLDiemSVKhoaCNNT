@@ -116,6 +116,7 @@
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.Size = new Size(659, 272);
             dataGridView1.TabIndex = 63;
+            dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // textBox2
             // 
@@ -199,7 +200,7 @@
             // comboBox1
             // 
             comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            comboBox1.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
             comboBox1.Location = new Point(216, 256);
             comboBox1.Name = "comboBox1";
             comboBox1.Size = new Size(151, 28);
@@ -209,7 +210,7 @@
             // comboBox2
             // 
             comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" });
+            comboBox2.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
             comboBox2.Location = new Point(236, 312);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(151, 28);
@@ -287,6 +288,7 @@
             Controls.Add(button1);
             Name = "FrmQLLopHoc";
             Text = "FrmQLLopHoc";
+            Load += FrmQLLopHoc_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

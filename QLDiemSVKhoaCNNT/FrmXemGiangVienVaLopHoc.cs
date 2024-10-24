@@ -1,4 +1,4 @@
-﻿using QLDiemSVKhoaCNNT.DAL;
+﻿ using QLDiemSVKhoaCNNT.DAL;
 using QLDiemSVKhoaCNNT.DBConnection;
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLDiemSVKhoaCNNT
 {
@@ -22,30 +23,22 @@ namespace QLDiemSVKhoaCNNT
 
         private void FrmXemGiangVienVaLopHoc_Load(object sender, EventArgs e)
         {
-            using (SqlConnection connectcion = new SqlConnection(QLDSVCNTTConnection.connectionString))
-            {
-                try
-                {
-                    string query = "select * from GiangVien";
-                    using (SqlCommand command = new SqlCommand(query, connectcion))
-                    {
-                        SqlDataAdapter adapter = new SqlDataAdapter(command);
-                        DataTable table = new DataTable();
-                        adapter.Fill(table);
-                        cbx_giangvien.DataSource = table;
-                        cbx_giangvien.DisplayMember = "HoVaTen";
+            try { 
+                        ViewDAL giangVienDAl = new ViewDAL();
+                        cbx_giangvien.DataSource = giangVienDAl.GetViewGiangVien();
+                        cbx_giangvien.DisplayMember = "MaGiangVien";
                         cbx_giangvien.ValueMember = "MaGiangVien";
+                        cbx_giangvien.SelectedIndex = 0;
                         ViewDAL viewDAL = new ViewDAL();
                         dgvLopHocDcPhuTrach.DataSource = viewDAL.GetViewLopHocGiangVienPhuTrach();
                         dgvLopHocDcPhuTrach.AllowUserToAddRows = false;
 
-                    }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.Message);
                 }
-            }
+            
         }
 
         private void cbx_giangvien_SelectedValueChanged(object sender, EventArgs e)

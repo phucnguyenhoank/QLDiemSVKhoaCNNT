@@ -1,4 +1,5 @@
 ﻿using QLDiemSVKhoaCNNT.DAL;
+using QLDiemSVKhoaCNNT.DBConnection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLDiemSVKhoaCNNT
 {
@@ -38,14 +40,14 @@ namespace QLDiemSVKhoaCNNT
                 try
                 {
                     // Khởi tạo ViewDAL để lấy dữ liệu
-                    ViewDAL viewDAL = new ViewDAL();
+                    LopHocDAL lopHocDAL = new LopHocDAL();
 
                     // Lấy danh sách sinh viên
-                    DataTable dtGiangVien = viewDAL.G();
+                    DataTable dtLopHoc = lopHocDAL.GetViewLopHoc();
 
                     // Sử dụng DataView để lọc dữ liệu theo Mã sinh viên
-                    DataView dv = new DataView(dtGiangVien);
-                    dv.RowFilter = string.Format("MaMonHoc = '{0}'", maGiangVienTimKiem);
+                    DataView dv = new DataView(dtLopHoc);
+                    dv.RowFilter = string.Format("MaLopHoc = '{0}'", maGiangVienTimKiem);
 
                     // Kiểm tra nếu có kết quả tìm kiếm
                     if (dv.Count > 0)
@@ -54,7 +56,7 @@ namespace QLDiemSVKhoaCNNT
                     }
                     else
                     {
-                        MessageBox.Show("Không tìm thấy môn học với mã này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Không tìm thấy Lop hoc với mã này!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
                 catch (SqlException sqlEx)
@@ -73,6 +75,55 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show("Vui lòng nhập mã sinh viên để tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-    }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
+            if (e.RowIndex >= 0)
+            {
+                // Lấy dòng hiện tại
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                // Gán giá trị từ các ô của dòng vào các TextBox
+                textBox2.Text = row.Cells["MaMonHoc"].Value.ToString();
+                textBox3.Text = row.Cells["TenMonHoc"].Value.ToString();
+                textBox4.Text = row.Cells["SoTinChi"].Value.ToString();
+            }
+        }
+
+        private void FrmQLLopHoc_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                ViewDAL monHocDAL = new ViewDAL();
+                comboBox5.DataSource = monHocDAL.GetViewMonHoc();
+                comboBox5.DisplayMember = "MaMonHoc";
+                comboBox5.ValueMember = "MaMonHoc";
+                comboBox5.SelectedIndex = 0;
+                ViewDAL giangVienDAl = new ViewDAL();
+                comboBox4.DataSource = giangVienDAl.GetViewGiangVien();
+                comboBox4.DisplayMember = "MaGiangVien";
+                comboBox4.ValueMember = "MaGiangVien";
+                comboBox4.SelectedIndex = 0;
+
+            }
+            catch(SqlException sqlEx) {
+            
+                MessageBox.Show(sqlEx.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            try
+            {
+                LopHocDAL viewDAL = new LopHocDAL();
+                dataGridView1.DataSource = viewDAL.GetViewLopHoc();
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
