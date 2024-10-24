@@ -28,107 +28,130 @@
         /// </summary>
         private void InitializeComponent()
         {
-            textBox1 = new TextBox();
+            textBoxmssv = new TextBox();
             labelmssv = new Label();
-            button1 = new Button();
+            buttonshow = new Button();
             label1 = new Label();
-            textBox2 = new TextBox();
-            dataGridView1 = new DataGridView();
+            dgvdanhsachdiemsv = new DataGridView();
             panel1 = new Panel();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            label3 = new Label();
+            label2 = new Label();
+            ((System.ComponentModel.ISupportInitialize)dgvdanhsachdiemsv).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
-            // textBox1
+            // textBoxmssv
             // 
-            textBox1.Location = new Point(139, 53);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(135, 27);
-            textBox1.TabIndex = 0;
+            textBoxmssv.Location = new Point(95, 53);
+            textBoxmssv.Name = "textBoxmssv";
+            textBoxmssv.Size = new Size(135, 27);
+            textBoxmssv.TabIndex = 0;
             // 
             // labelmssv
             // 
             labelmssv.AutoSize = true;
             labelmssv.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             labelmssv.ForeColor = SystemColors.ControlLightLight;
-            labelmssv.Location = new Point(35, 49);
+            labelmssv.Location = new Point(12, 52);
             labelmssv.Name = "labelmssv";
             labelmssv.Size = new Size(77, 28);
             labelmssv.TabIndex = 1;
             labelmssv.Text = "MSSV: ";
             // 
-            // button1
+            // buttonshow
             // 
-            button1.Location = new Point(294, 51);
-            button1.Name = "button1";
-            button1.Size = new Size(81, 28);
-            button1.TabIndex = 2;
-            button1.Text = "Show";
-            button1.UseVisualStyleBackColor = true;
+            buttonshow.Location = new Point(252, 52);
+            buttonshow.Name = "buttonshow";
+            buttonshow.Size = new Size(81, 28);
+            buttonshow.TabIndex = 2;
+            buttonshow.Text = "Show";
+            buttonshow.UseVisualStyleBackColor = true;
+            buttonshow.Click += buttonshow_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.ControlLightLight;
-            label1.Location = new Point(34, 108);
+            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.Location = new Point(21, 27);
             label1.Name = "label1";
-            label1.Size = new Size(78, 28);
+            label1.Size = new Size(151, 23);
             label1.TabIndex = 3;
-            label1.Text = "Họ Tên";
+            label1.Text = "Điểm Trung Bình:";
             // 
-            // textBox2
+            // dgvdanhsachdiemsv
             // 
-            textBox2.Location = new Point(139, 112);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(135, 27);
-            textBox2.TabIndex = 4;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(392, 12);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(396, 388);
-            dataGridView1.TabIndex = 6;
+            dgvdanhsachdiemsv.AllowUserToAddRows = false;
+            dgvdanhsachdiemsv.AllowUserToDeleteRows = false;
+            dgvdanhsachdiemsv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvdanhsachdiemsv.Location = new Point(339, 12);
+            dgvdanhsachdiemsv.Name = "dgvdanhsachdiemsv";
+            dgvdanhsachdiemsv.ReadOnly = true;
+            dgvdanhsachdiemsv.RowHeadersWidth = 51;
+            dgvdanhsachdiemsv.Size = new Size(683, 388);
+            dgvdanhsachdiemsv.TabIndex = 6;
             // 
             // panel1
             // 
             panel1.BackColor = SystemColors.ButtonHighlight;
-            panel1.Location = new Point(28, 176);
+            panel1.Controls.Add(label3);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(label2);
+            panel1.Location = new Point(28, 98);
             panel1.Name = "panel1";
             panel1.Size = new Size(305, 234);
             panel1.TabIndex = 7;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(21, 127);
+            label3.Name = "label3";
+            label3.Size = new Size(202, 23);
+            label3.TabIndex = 1;
+            label3.Text = "Số Tín Chỉ Hoàn Thành: ";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(21, 82);
+            label2.Name = "label2";
+            label2.Size = new Size(227, 23);
+            label2.TabIndex = 0;
+            label2.Text = "Điểm Trung Bình Tích Lũy: ";
             // 
             // Form_diem1sv
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1034, 450);
             Controls.Add(panel1);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox2);
-            Controls.Add(label1);
-            Controls.Add(button1);
+            Controls.Add(dgvdanhsachdiemsv);
+            Controls.Add(buttonshow);
             Controls.Add(labelmssv);
-            Controls.Add(textBox1);
+            Controls.Add(textBoxmssv);
             Name = "Form_diem1sv";
             Text = "Form_diem1sv";
             Load += Form_diem1sv_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvdanhsachdiemsv).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private TextBox textBox1;
+        private TextBox textBoxmssv;
         private Label labelmssv;
-        private Button button1;
+        private Button buttonshow;
         private Label label1;
-        private TextBox textBox2;
-        private DataGridView dataGridView1;
+        private DataGridView dgvdanhsachdiemsv;
         private Panel panel1;
+        private Label label3;
+        private Label label2;
     }
 }
