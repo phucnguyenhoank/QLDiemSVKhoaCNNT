@@ -438,11 +438,5 @@ namespace QLDiemSVKhoaCNNT.DAL
                 throw new Exception($"Error: {ex.Message}");
             }
         }
-
-
-
-
-
-
     }
 }
