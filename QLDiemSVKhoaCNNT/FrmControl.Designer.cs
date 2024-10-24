@@ -35,8 +35,8 @@
             btnSinhVien = new Button();
             pbxUTELogo = new PictureBox();
             pnlTop = new Panel();
-            pnlBody = new Panel();
             lblTitle = new Label();
+            pnlBody = new Panel();
             pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbxUTELogo).BeginInit();
             pnlTop.SuspendLayout();
@@ -53,7 +53,7 @@
             pnlLeft.Dock = DockStyle.Left;
             pnlLeft.Location = new Point(0, 0);
             pnlLeft.Name = "pnlLeft";
-            pnlLeft.Size = new Size(144, 537);
+            pnlLeft.Size = new Size(144, 704);
             pnlLeft.TabIndex = 0;
             // 
             // btnLopHoc
@@ -131,17 +131,8 @@
             pnlTop.Dock = DockStyle.Top;
             pnlTop.Location = new Point(144, 0);
             pnlTop.Name = "pnlTop";
-            pnlTop.Size = new Size(851, 84);
+            pnlTop.Size = new Size(1334, 84);
             pnlTop.TabIndex = 1;
-            // 
-            // pnlBody
-            // 
-            pnlBody.BackColor = Color.FromArgb(128, 128, 255);
-            pnlBody.Dock = DockStyle.Fill;
-            pnlBody.Location = new Point(144, 84);
-            pnlBody.Name = "pnlBody";
-            pnlBody.Size = new Size(851, 453);
-            pnlBody.TabIndex = 2;
             // 
             // lblTitle
             // 
@@ -153,11 +144,20 @@
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Home";
             // 
+            // pnlBody
+            // 
+            pnlBody.BackColor = Color.FromArgb(128, 128, 255);
+            pnlBody.Dock = DockStyle.Fill;
+            pnlBody.Location = new Point(144, 84);
+            pnlBody.Name = "pnlBody";
+            pnlBody.Size = new Size(1334, 620);
+            pnlBody.TabIndex = 2;
+            // 
             // FrmControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(995, 537);
+            ClientSize = new Size(1478, 704);
             Controls.Add(pnlBody);
             Controls.Add(pnlTop);
             Controls.Add(pnlLeft);

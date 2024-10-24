@@ -45,12 +45,14 @@
             button2 = new Button();
             button1 = new Button();
             label2 = new Label();
+            btnKiemTraSV = new Button();
+            btnXemHocLucSV = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // button5
             // 
-            button5.Location = new Point(1055, 540);
+            button5.Location = new Point(713, 472);
             button5.Name = "button5";
             button5.Size = new Size(94, 29);
             button5.TabIndex = 53;
@@ -61,7 +63,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(78, 413);
+            label6.Location = new Point(29, 293);
             label6.Name = "label6";
             label6.Size = new Size(97, 20);
             label6.TabIndex = 52;
@@ -70,7 +72,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(78, 320);
+            label5.Location = new Point(78, 228);
             label5.Name = "label5";
             label5.Size = new Size(46, 20);
             label5.TabIndex = 51;
@@ -79,7 +81,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(78, 234);
+            label4.Location = new Point(53, 154);
             label4.Name = "label4";
             label4.Size = new Size(73, 20);
             label4.TabIndex = 50;
@@ -88,7 +90,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(78, 154);
+            label3.Location = new Point(36, 85);
             label3.Name = "label3";
             label3.Size = new Size(103, 20);
             label3.TabIndex = 49;
@@ -97,7 +99,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(563, 49);
+            label1.Location = new Point(521, 26);
             label1.Name = "label1";
             label1.Size = new Size(137, 20);
             label1.TabIndex = 48;
@@ -106,51 +108,51 @@
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(473, 194);
+            dataGridView1.Location = new Point(360, 111);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(698, 272);
+            dataGridView1.Size = new Size(836, 338);
             dataGridView1.TabIndex = 47;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(180, 392);
+            textBox5.Location = new Point(149, 290);
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(125, 27);
             textBox5.TabIndex = 46;
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(180, 302);
+            textBox4.Location = new Point(149, 221);
             textBox4.Name = "textBox4";
             textBox4.Size = new Size(125, 27);
             textBox4.TabIndex = 45;
             // 
             // textBox3
             // 
-            textBox3.Location = new Point(180, 227);
+            textBox3.Location = new Point(149, 147);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(125, 27);
             textBox3.TabIndex = 44;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(171, 147);
+            textBox2.Location = new Point(149, 85);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(125, 27);
             textBox2.TabIndex = 43;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(519, 101);
+            textBox1.Location = new Point(477, 78);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(489, 27);
             textBox1.TabIndex = 42;
             // 
             // button4
             // 
-            button4.Location = new Point(734, 540);
+            button4.Location = new Point(594, 472);
             button4.Name = "button4";
             button4.Size = new Size(94, 29);
             button4.TabIndex = 41;
@@ -160,7 +162,7 @@
             // 
             // button3
             // 
-            button3.Location = new Point(428, 540);
+            button3.Location = new Point(477, 472);
             button3.Name = "button3";
             button3.Size = new Size(94, 29);
             button3.TabIndex = 40;
@@ -170,7 +172,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(180, 540);
+            button2.Location = new Point(360, 472);
             button2.Name = "button2";
             button2.Size = new Size(94, 29);
             button2.TabIndex = 39;
@@ -180,7 +182,7 @@
             // 
             // button1
             // 
-            button1.Location = new Point(1089, 99);
+            button1.Location = new Point(1047, 76);
             button1.Name = "button1";
             button1.Size = new Size(94, 29);
             button1.TabIndex = 38;
@@ -191,17 +193,39 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(388, 100);
+            label2.Location = new Point(346, 77);
             label2.Name = "label2";
             label2.Size = new Size(106, 20);
             label2.TabIndex = 54;
             label2.Text = "Ma Giang Vien";
+            // 
+            // btnKiemTraSV
+            // 
+            btnKiemTraSV.Location = new Point(861, 472);
+            btnKiemTraSV.Name = "btnKiemTraSV";
+            btnKiemTraSV.Size = new Size(211, 29);
+            btnKiemTraSV.TabIndex = 55;
+            btnKiemTraSV.Text = "Kiem tra sinh vien qua mon";
+            btnKiemTraSV.UseVisualStyleBackColor = true;
+            btnKiemTraSV.Click += btnKiemTraSV_Click;
+            // 
+            // btnXemHocLucSV
+            // 
+            btnXemHocLucSV.Location = new Point(360, 524);
+            btnXemHocLucSV.Name = "btnXemHocLucSV";
+            btnXemHocLucSV.Size = new Size(211, 29);
+            btnXemHocLucSV.TabIndex = 56;
+            btnXemHocLucSV.Text = "Xem hoc luc sinh vien";
+            btnXemHocLucSV.UseVisualStyleBackColor = true;
+            btnXemHocLucSV.Click += btnXemHocLucSV_Click;
             // 
             // FrmQLGiaoVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1261, 619);
+            Controls.Add(btnXemHocLucSV);
+            Controls.Add(btnKiemTraSV);
             Controls.Add(label2);
             Controls.Add(button5);
             Controls.Add(label6);
@@ -245,5 +269,7 @@
         private Button button2;
         private Button button1;
         private Label label2;
+        private Button btnKiemTraSV;
+        private Button btnXemHocLucSV;
     }
 }

@@ -190,5 +190,43 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnKiemTraSV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmMotSinhVienCoQuaMon frmMotSinhVienCoQuaMon = new FrmMotSinhVienCoQuaMon();
+                frmMotSinhVienCoQuaMon.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXemHocLucSV_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmXemHocLucMotSinhVien frmXemHocLuc = new FrmXemHocLucMotSinhVien();
+                frmXemHocLuc.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

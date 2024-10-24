@@ -29,6 +29,7 @@ namespace QLDiemSVKhoaCNNT
                 comboBox1.DisplayMember = "MaLopHoc";
                 comboBox1.ValueMember = "MaLopHoc";
                 comboBox1.SelectedIndex = 0;
+                
             }
             catch (SqlException sqlEx)
             {
@@ -57,7 +58,7 @@ namespace QLDiemSVKhoaCNNT
             {
                 FunctionDAL lopHocDAL = new FunctionDAL();
                 dataGridView1.DataSource = lopHocDAL.LayDanhSachSinhVienTrongLop(int.Parse(comboBox1.Text));
-
+                label4.Text = "So luong SV: " + lopHocDAL.DemSoLuongSinhVienCuaLop(int.Parse(comboBox1.Text));
             }
             catch (SqlException sqlEx)
             {

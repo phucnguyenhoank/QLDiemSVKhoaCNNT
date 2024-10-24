@@ -240,5 +240,81 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnLopPhuTrach_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmXemGiangVienVaLopHoc frmXemGiangVienVaLop = new FrmXemGiangVienVaLopHoc();
+                frmXemGiangVienVaLop.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXemLopTrong_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmLopHocTrong frmLopHocTrong = new FrmLopHocTrong();
+                frmLopHocTrong.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnDangKySVvaoLop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DKSinhVien dKSinhVien = new DKSinhVien();
+                dKSinhVien.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnXemBangDiemCuaLop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmXemKetQuaHocTapTaiLop frmXemKetQuaHocTapTaiLop = new FrmXemKetQuaHocTapTaiLop();
+                frmXemKetQuaHocTapTaiLop.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

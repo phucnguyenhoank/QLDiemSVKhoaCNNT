@@ -188,5 +188,62 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show("Vui lòng nhập mã sinh viên để tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btnXemXepHangDTB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Bang_xep_hang_theo_diem bang_Xep_Hang_Theo_Diem = new Bang_xep_hang_theo_diem();
+                bang_Xep_Hang_Theo_Diem.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnTongKetDiemSinhVien_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Form_diem1sv form_Diem1Sv = new Form_diem1sv();
+                form_Diem1Sv.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCapNhatDiem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmCapNhatDiemSinhVien frmCapNhatDiemSinhVien = new FrmCapNhatDiemSinhVien();
+                frmCapNhatDiemSinhVien.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -23,22 +23,23 @@ namespace QLDiemSVKhoaCNNT
 
         private void FrmXemGiangVienVaLopHoc_Load(object sender, EventArgs e)
         {
-            try { 
-                        ViewDAL giangVienDAl = new ViewDAL();
-                        cbx_giangvien.DataSource = giangVienDAl.GetViewGiangVien();
-                        cbx_giangvien.DisplayMember = "MaGiangVien";
-                        cbx_giangvien.ValueMember = "MaGiangVien";
-                        cbx_giangvien.SelectedIndex = 0;
-                        ViewDAL viewDAL = new ViewDAL();
-                        dgvLopHocDcPhuTrach.DataSource = viewDAL.GetViewLopHocGiangVienPhuTrach();
-                        dgvLopHocDcPhuTrach.AllowUserToAddRows = false;
+            try
+            {
+                ViewDAL giangVienDAl = new ViewDAL();
+                cbx_giangvien.DataSource = giangVienDAl.GetViewGiangVien();
+                cbx_giangvien.DisplayMember = "MaGiangVien";
+                cbx_giangvien.ValueMember = "MaGiangVien";
+                cbx_giangvien.SelectedIndex = 0;
+                ViewDAL viewDAL = new ViewDAL();
+                dgvLopHocDcPhuTrach.DataSource = viewDAL.GetViewLopHocGiangVienPhuTrach();
+                dgvLopHocDcPhuTrach.AllowUserToAddRows = false;
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
 
         private void cbx_giangvien_SelectedValueChanged(object sender, EventArgs e)
@@ -48,6 +49,7 @@ namespace QLDiemSVKhoaCNNT
             {
                 FunctionDAL functionDAL = new FunctionDAL();
                 label2.Text = "Số lượng lớp giảng viên này phụ trách: " + functionDAL.DemSoLopGiangVienPhuTrach(maGV);
+
             }
         }
 
@@ -73,6 +75,11 @@ namespace QLDiemSVKhoaCNNT
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
             }
+        }
+
+        private void cbx_giangvien_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -30,6 +30,8 @@ namespace QLDiemSVKhoaCNNT
                 cbxMaLopHoc.DisplayMember = "MaLopHoc";
                 cbxMaLopHoc.ValueMember = "MaLopHoc";
                 cbxMaLopHoc.SelectedIndex = 0;
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                dgvDiemSinhVienCuaLop.DataSource = procedureDAL.XemKetQuaHocTapCuaLop(1);
             }
             catch (SqlException sqlEx)
             {
@@ -48,14 +50,12 @@ namespace QLDiemSVKhoaCNNT
 
         private void cbxMaLopHoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            LopHoc selectedLopHoc = cbxMaLopHoc.SelectedItem as LopHoc;
-            if (selectedLopHoc != null)
+            int maLH;
+            if (Int32.TryParse(cbxMaLopHoc.SelectedValue.ToString(), out maLH))
             {
-                int maLopHoc = selectedLopHoc.MaLopHoc;
-
                 // Gọi phương thức lấy danh sách sinh viên trong lớp
                 ProcedureDAL procedureDAL = new ProcedureDAL();
-                dgvDiemSinhVienCuaLop.DataSource = procedureDAL.XemKetQuaHocTapCuaLop(maLopHoc);
+                dgvDiemSinhVienCuaLop.DataSource = procedureDAL.XemKetQuaHocTapCuaLop(maLH);
             }
         }
     }

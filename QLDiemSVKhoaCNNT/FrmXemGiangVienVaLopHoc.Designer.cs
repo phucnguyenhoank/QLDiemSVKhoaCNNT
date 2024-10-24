@@ -73,6 +73,7 @@
             cbx_giangvien.Name = "cbx_giangvien";
             cbx_giangvien.Size = new Size(176, 28);
             cbx_giangvien.TabIndex = 4;
+            cbx_giangvien.SelectedIndexChanged += cbx_giangvien_SelectedIndexChanged;
             cbx_giangvien.SelectedValueChanged += cbx_giangvien_SelectedValueChanged;
             // 
             // FrmXemGiangVienVaLopHoc
