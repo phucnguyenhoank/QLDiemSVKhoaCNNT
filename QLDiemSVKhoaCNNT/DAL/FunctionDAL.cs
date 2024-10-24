@@ -272,6 +272,8 @@ namespace QLDiemSVKhoaCNNT.DAL
         /// <br>- Email: Địa chỉ email.</br>
         /// <br>- SoDienThoai: Số điện thoại.</br>
         /// <br>- QueQuan: Quê quán của sinh viên.</br>
+        /// <br>- DiemQuaTrinh: Điểm quá trình của sinh viên.</br>
+        /// <br>- Điểm cuối kỳ: Điểm cuối kỳ của sinh viên.</br>
         /// </returns>
         /// <exception cref="SqlException">
         /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
@@ -294,7 +296,9 @@ namespace QLDiemSVKhoaCNNT.DAL
                         sv.HoVaTen, 
                         sv.Email, 
                         sv.SoDienThoai, 
-                        sv.QueQuan 
+                        sv.QueQuan,
+                        sv.DiemQuaTrinh,
+		                sv.DiemCuoiKy
                     FROM 
                         dbo.fn_LayDanhSachSinhVienTrongLop(@MaLopHoc) AS sv";
 
@@ -438,5 +442,50 @@ namespace QLDiemSVKhoaCNNT.DAL
                 throw new Exception($"Error: {ex.Message}");
             }
         }
+
+        public decimal LayDiemTrungBinhTichLuySinhVien(int maSinhVien)
+        {
+            try
+            {
+                decimal diemTrungBinh = 0; // Khởi tạo biến để lưu kết quả
+                string connectionString = QLDSVCNTTConnection.connectionString; // Chuỗi kết nối đến SQL Server
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    // Truy vấn để gọi hàm TinhDiemTrungBinh từ SQL Server
+                    string query = "SELECT dbo.fn_TinhDiemTrungBinhTichLuy(@MaSinhVien)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Thêm tham số maSinhVien
+                        cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
+
+                        // Thực thi lệnh và lấy giá trị trả về của function
+                        object result = cmd.ExecuteScalar();
+
+                        // Kiểm tra giá trị trả về không null
+                        if (result != DBNull.Value)
+                        {
+                            diemTrungBinh = Convert.ToDecimal(result);
+                        }
+                    }
+                }
+
+                return diemTrungBinh; // Trả về điểm trung bình
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
+
+
+
     }
 }

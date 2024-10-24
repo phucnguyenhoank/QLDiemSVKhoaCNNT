@@ -361,3 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/QLDiemSVKhoaCNNT/Program.cs
+/QLDiemSVKhoaCNNT/DBConnection/QLDSVCNTTConnection.cs
+/QLDiemSVKhoaCNNT/Program.cs
+/QLDiemSVKhoaCNNT/DBConnection/QLDSVCNTTConnection.cs
