@@ -62,6 +62,7 @@
             button5.TabIndex = 69;
             button5.Text = "Tai lai";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // label6
             // 
@@ -140,6 +141,7 @@
             button4.TabIndex = 57;
             button4.Text = "Sua";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -149,6 +151,7 @@
             button3.TabIndex = 56;
             button3.Text = "Xoa";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += button3_Click;
             // 
             // button2
             // 
@@ -158,6 +161,7 @@
             button2.TabIndex = 55;
             button2.Text = "Them";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 

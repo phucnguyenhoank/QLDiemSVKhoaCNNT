@@ -37,7 +37,7 @@ namespace QLDiemSVKhoaCNNT
             dgvdanhsachdiemsv.Columns[5].HeaderText = "Xếp loại";
             label1.Text ="Điểm Trung Bình: " + Convert.ToString( functionDAL.LayDiemTrungBinhSinhVien( mssv ));
 
-            label2.Text = "Điểm Trung Bình Tích Lũy: " + Convert.ToString(functionDAL.LayDiemTrungBinhTichLuySinhVien(mssv));
+            label2.Text = "Điểm Trung Bình Tích Lũy: " + Convert.ToString(functionDAL.TinhDiemTrungBinhTichLuy(mssv));
             label3.Text = "Số Tín Chỉ Hoàn Thành: " + Convert.ToString(functionDAL.SoTinChiHoanThanh(mssv));
         }
     }

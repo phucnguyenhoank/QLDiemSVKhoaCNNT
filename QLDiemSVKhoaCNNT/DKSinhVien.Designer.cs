@@ -48,6 +48,7 @@
             button5.TabIndex = 69;
             button5.Text = "Tai lai";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // label1
             // 
@@ -84,6 +85,7 @@
             button2.TabIndex = 55;
             button2.Text = "Them";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button1
             // 
@@ -93,6 +95,7 @@
             button1.TabIndex = 54;
             button1.Text = "Tim kiem lop hoc";
             button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // comboBox1
             // 
@@ -126,6 +129,7 @@
             Controls.Add(button1);
             Name = "DKSinhVien";
             Text = "DKSinhVien";
+            Load += DKSinhVien_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ResumeLayout(false);

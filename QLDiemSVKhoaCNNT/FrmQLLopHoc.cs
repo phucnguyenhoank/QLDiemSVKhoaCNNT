@@ -85,9 +85,14 @@ namespace QLDiemSVKhoaCNNT
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
                 // Gán giá trị từ các ô của dòng vào các TextBox
-                textBox2.Text = row.Cells["MaMonHoc"].Value.ToString();
-                textBox3.Text = row.Cells["TenMonHoc"].Value.ToString();
-                textBox4.Text = row.Cells["SoTinChi"].Value.ToString();
+                textBox2.Text = row.Cells["MaLopHoc"].Value.ToString();
+                comboBox6.Text = row.Cells["Thu"].Value.ToString();
+                comboBox1.Text = row.Cells["TietBatDau"].Value.ToString();
+                comboBox2.Text = row.Cells["TietKetThuc"].Value.ToString();
+                comboBox3.Text = row.Cells["MaPhongHoc"].Value.ToString();
+                comboBox4.Text = row.Cells["MaGiangVien"].Value.ToString();
+                comboBox5.Text = row.Cells["MaMonHoc"].Value.ToString();
+
             }
         }
 
@@ -105,10 +110,23 @@ namespace QLDiemSVKhoaCNNT
                 comboBox4.DisplayMember = "MaGiangVien";
                 comboBox4.ValueMember = "MaGiangVien";
                 comboBox4.SelectedIndex = 0;
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("select * from PhongHoc", connection))
+                    {
+                        SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        comboBox3.DataSource = dt;
+                        comboBox3.DisplayMember = "MaPhongHoc";
+                        comboBox3.ValueMember = "MaPhongHoc";
+                    }
+                }
 
             }
-            catch(SqlException sqlEx) {
-            
+            catch (SqlException sqlEx)
+            {
+
                 MessageBox.Show(sqlEx.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             try
@@ -119,6 +137,103 @@ namespace QLDiemSVKhoaCNNT
             catch (SqlException sqlEx)
             {
                 MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int MaLopHoc = int.Parse(textBox2.Text); ;
+                byte Thu = byte.Parse(comboBox6.Text);
+                byte TietBatDau = byte.Parse(comboBox1.Text);
+                byte TietKetThu = byte.Parse(comboBox2.Text);
+                int MaPhongHoc = int.Parse(comboBox3.Text);
+                int MaGiangVien = int.Parse(comboBox4.Text);
+                int MaMonHoc = int.Parse(comboBox5.Text);
+
+                LopHocDAL lopHocDAL = new LopHocDAL();
+                lopHocDAL.ThemLopHoc(MaLopHoc, Thu, TietBatDau, TietKetThu, MaPhongHoc, MaGiangVien, MaMonHoc);
+
+                MessageBox.Show($"Them lop hoc {MaLopHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi sql", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Khởi tạo lại lớp ViewDAL để lấy dữ liệu mới
+                LopHocDAL viewDAL = new LopHocDAL();
+
+                // Nạp lại dữ liệu vào DataGridView
+                dataGridView1.DataSource = viewDAL.GetViewLopHoc();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int maSinhVien = int.Parse(textBox2.Text);
+
+                LopHocDAL sinhVienDAL = new LopHocDAL();
+                sinhVienDAL.XoaLopHoc(maSinhVien);
+                MessageBox.Show($"Xoa lop hoc {maSinhVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi sql", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int MaLopHoc = int.Parse(textBox2.Text); ;
+                byte Thu = byte.Parse(comboBox6.Text);
+                byte TietBatDau = byte.Parse(comboBox1.Text);
+                byte TietKetThu = byte.Parse(comboBox2.Text);
+                int MaPhongHoc = int.Parse(comboBox3.Text);
+                int MaGiangVien = int.Parse(comboBox4.Text);
+                int MaMonHoc = int.Parse(comboBox5.Text);
+
+                LopHocDAL lopHocDAL = new LopHocDAL();
+                lopHocDAL.SuaLopHoc(MaLopHoc, Thu, TietBatDau, TietKetThu, MaPhongHoc, MaGiangVien, MaMonHoc);
+
+                MessageBox.Show($"Sua lop hoc {MaLopHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi sql", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
