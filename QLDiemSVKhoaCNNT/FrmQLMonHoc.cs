@@ -20,7 +20,7 @@ namespace QLDiemSVKhoaCNNT
             InitializeComponent();
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnTaiLai_Click(object sender, EventArgs e)
         {
             try
             {
@@ -28,7 +28,7 @@ namespace QLDiemSVKhoaCNNT
                 ViewDAL viewDAL = new ViewDAL();
 
                 // Nạp lại dữ liệu vào DataGridView
-                dataGridView1.DataSource = viewDAL.GetViewMonHoc();
+                dgvMonHoc.DataSource = viewDAL.GetViewMonHoc();
             }
             catch (SqlException sqlEx)
             {
@@ -42,13 +42,13 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnThem_Click(object sender, EventArgs e)
         {
             try
             {
-                int maMonHoc = int.Parse(textBox2.Text);
-                string tenMonHoc = textBox3.Text;
-                byte soTinChi = byte.Parse(textBox4.Text);
+                int maMonHoc = int.Parse(txtMaMonHoc.Text);
+                string tenMonHoc = txtTenMonHoc.Text;
+                byte soTinChi = byte.Parse(txtSoTinChi.Text);
                 MonHocDAL monHocDAL = new MonHocDAL();
                 monHocDAL.ThemMonHoc(maMonHoc, tenMonHoc, soTinChi);
                 MessageBox.Show($"Them mon hoc {maMonHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -63,11 +63,11 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
         {
             try
             {
-                int maMonHoc = int.Parse(textBox2.Text);
+                int maMonHoc = int.Parse(txtMaMonHoc.Text);
 
                 MonHocDAL monHocDAL = new MonHocDAL();
                 monHocDAL.XoaMonHoc(maMonHoc);
@@ -83,28 +83,28 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvMonHoc_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
             if (e.RowIndex >= 0)
             {
                 // Lấy dòng hiện tại
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = dgvMonHoc.Rows[e.RowIndex];
 
                 // Gán giá trị từ các ô của dòng vào các TextBox
-                textBox2.Text = row.Cells["MaMonHoc"].Value.ToString();
-                textBox3.Text = row.Cells["TenMonHoc"].Value.ToString();
-                textBox4.Text = row.Cells["SoTinChi"].Value.ToString();
+                txtMaMonHoc.Text = row.Cells["MaMonHoc"].Value.ToString();
+                txtTenMonHoc.Text = row.Cells["TenMonHoc"].Value.ToString();
+                txtSoTinChi.Text = row.Cells["SoTinChi"].Value.ToString();
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnSua_Click(object sender, EventArgs e)
         {
             try
             {
-                int maMonHoc = int.Parse(textBox2.Text);
-                string tenMonHoc = textBox3.Text;
-                byte soTinChi = byte.Parse(textBox4.Text);
+                int maMonHoc = int.Parse(txtMaMonHoc.Text);
+                string tenMonHoc = txtTenMonHoc.Text;
+                byte soTinChi = byte.Parse(txtSoTinChi.Text);
                 MonHocDAL sinhVienDAL = new MonHocDAL();
                 sinhVienDAL.SuaMonHoc(maMonHoc, tenMonHoc, soTinChi);
 
@@ -125,7 +125,7 @@ namespace QLDiemSVKhoaCNNT
             try
             {
                 ViewDAL viewDAL = new ViewDAL();
-                dataGridView1.DataSource = viewDAL.GetViewMonHoc();
+                dgvMonHoc.DataSource = viewDAL.GetViewMonHoc();
             }
             catch (SqlException sqlEx)
             {
@@ -137,9 +137,9 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            string maGiangVienTimKiem = textBox1.Text.Trim(); // Lấy mã sinh viên từ TextBox
+            string maGiangVienTimKiem = txtMaMonHocTimKiem.Text.Trim(); // Lấy mã sinh viên từ TextBox
 
             if (!string.IsNullOrEmpty(maGiangVienTimKiem)) // Kiểm tra mã sinh viên không rỗng
             {
@@ -158,7 +158,7 @@ namespace QLDiemSVKhoaCNNT
                     // Kiểm tra nếu có kết quả tìm kiếm
                     if (dv.Count > 0)
                     {
-                        dataGridView1.DataSource = dv; // Gán DataView đã lọc vào DataGridView
+                        dgvMonHoc.DataSource = dv; // Gán DataView đã lọc vào DataGridView
                     }
                     else
                     {
@@ -181,5 +181,6 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show("Vui lòng nhập mã sinh viên để tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
     }
 }

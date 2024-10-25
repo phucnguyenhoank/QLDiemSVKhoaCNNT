@@ -1,6 +1,6 @@
 ﻿namespace QLDiemSVKhoaCNNT
 {
-    partial class Form_diem1sv
+    partial class FrmDiemSinhVien
     {
         /// <summary>
         /// Required designer variable.

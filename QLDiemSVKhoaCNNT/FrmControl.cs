@@ -44,25 +44,25 @@ namespace QLDiemSVKhoaCNNT
         private void btnSinhVien_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FrmQLSinhVien());
-            lblTitle.Text = "Sinh Viên";
+            lblTitle.Text = "QUẢN LÝ SINH VIÊN";
         }
 
         private void btnGiangVien_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new FrmQLGiaoVien());
-            lblTitle.Text = "Giảng Viên";
+            OpenChildForm(new FrmQLGiangVien());
+            lblTitle.Text = "QUẢN LÝ GIẢNG VIÊN";
         }
 
         private void btnMonHoc_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FrmQLMonHoc());
-            lblTitle.Text = "Môn Học";
+            lblTitle.Text = "QUẢN LÝ MÔN HỌC";
         }
 
         private void btnLopHoc_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FrmQLLopHoc());
-            lblTitle.Text = "Lớp Học";
+            lblTitle.Text = "QUẢN LÝ LỚP HỌC";
         }
     }
 }

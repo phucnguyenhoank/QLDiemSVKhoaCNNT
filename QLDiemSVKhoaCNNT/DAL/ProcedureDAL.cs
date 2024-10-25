@@ -50,13 +50,8 @@ namespace QLDiemSVKhoaCNNT.DAL
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (SqlException)
             {
-                // Nếu gặp lỗi, có thể kiểm tra xem lỗi do sinh viên đã đăng ký lớp học này trước đó hay không
-                if (ex.Message.Contains("Sinh viên đã đăng ký lớp học này"))
-                {
-                    return false;
-                }
                 throw;
             }
             catch (Exception ex)

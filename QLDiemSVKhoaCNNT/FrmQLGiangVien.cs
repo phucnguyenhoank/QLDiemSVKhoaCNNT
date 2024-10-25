@@ -14,21 +14,16 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace QLDiemSVKhoaCNNT
 {
-    public partial class FrmQLGiaoVien : Form
+    public partial class FrmQLGiangVien : Form
     {
-        public FrmQLGiaoVien()
+        public FrmQLGiangVien()
         {
             InitializeComponent();
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string maGiangVienTimKiem = textBox1.Text.Trim(); // Lấy mã sinh viên từ TextBox
+            string maGiangVienTimKiem = txtMaGiangVienTimKiem.Text.Trim(); // Lấy mã sinh viên từ TextBox
 
             if (!string.IsNullOrEmpty(maGiangVienTimKiem)) // Kiểm tra mã sinh viên không rỗng
             {
@@ -47,7 +42,7 @@ namespace QLDiemSVKhoaCNNT
                     // Kiểm tra nếu có kết quả tìm kiếm
                     if (dv.Count > 0)
                     {
-                        dataGridView1.DataSource = dv; // Gán DataView đã lọc vào DataGridView
+                        dgvGiangVien.DataSource = dv; // Gán DataView đã lọc vào DataGridView
                     }
                     else
                     {
@@ -71,14 +66,14 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnThem_Click(object sender, EventArgs e)
         {
             try
             {
-                int maGiangVien = int.Parse(textBox2.Text);
-                string hoVaTen = textBox3.Text;
-                string email = textBox4.Text;
-                string soDienThoai = textBox5.Text;
+                int maGiangVien = int.Parse(txtMaGiangVien.Text);
+                string hoVaTen = txtHoVaTen.Text;
+                string email = txtEmail.Text;
+                string soDienThoai = txtSoDienThoai.Text;
                 GiangVienDAL giangVienDAL = new GiangVienDAL();
                 giangVienDAL.ThemGiangVien(maGiangVien, hoVaTen, email, soDienThoai);
                 MessageBox.Show($"Them giang vien {maGiangVien} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -93,11 +88,11 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnXoa_Click(object sender, EventArgs e)
         {
             try
             {
-                int maGiangVien = int.Parse(textBox2.Text);
+                int maGiangVien = int.Parse(txtMaGiangVien.Text);
 
                 GiangVienDAL giangVienDAL = new GiangVienDAL();
                 giangVienDAL.XoaGiangVien(maGiangVien);
@@ -113,19 +108,19 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvGiangVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
             if (e.RowIndex >= 0)
             {
                 // Lấy dòng hiện tại
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = dgvGiangVien.Rows[e.RowIndex];
 
                 // Gán giá trị từ các ô của dòng vào các TextBox
-                textBox2.Text = row.Cells["MaGiangVien"].Value.ToString();
-                textBox3.Text = row.Cells["HoVaTen"].Value.ToString();
-                textBox4.Text = row.Cells["Email"].Value.ToString();
-                textBox5.Text = row.Cells["SoDienThoai"].Value.ToString();
+                txtMaGiangVien.Text = row.Cells["MaGiangVien"].Value.ToString();
+                txtHoVaTen.Text = row.Cells["HoVaTen"].Value.ToString();
+                txtEmail.Text = row.Cells["Email"].Value.ToString();
+                txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
             }
         }
 
@@ -134,7 +129,7 @@ namespace QLDiemSVKhoaCNNT
             try
             {
                 ViewDAL viewDAL = new ViewDAL();
-                dataGridView1.DataSource = viewDAL.GetViewGiangVien();
+                dgvGiangVien.DataSource = viewDAL.GetViewGiangVien();
             }
             catch (SqlException sqlEx)
             {
@@ -146,14 +141,14 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnSua_Click(object sender, EventArgs e)
         {
             try
             {
-                int maGiangVien = int.Parse(textBox2.Text);
-                string hoVaTen = textBox3.Text;
-                string email = textBox4.Text;
-                string soDienThoai = textBox5.Text;
+                int maGiangVien = int.Parse(txtMaGiangVien.Text);
+                string hoVaTen = txtHoVaTen.Text;
+                string email = txtEmail.Text;
+                string soDienThoai = txtSoDienThoai.Text;
                 GiangVienDAL sinhVienDAL = new GiangVienDAL();
                 sinhVienDAL.SuaGiangVien(maGiangVien, hoVaTen, email, soDienThoai);
 
@@ -169,7 +164,7 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnTaiLai_Click(object sender, EventArgs e)
         {
             try
             {
@@ -177,7 +172,7 @@ namespace QLDiemSVKhoaCNNT
                 ViewDAL viewDAL = new ViewDAL();
 
                 // Nạp lại dữ liệu vào DataGridView
-                dataGridView1.DataSource = viewDAL.GetViewGiangVien();
+                dgvGiangVien.DataSource = viewDAL.GetViewGiangVien();
             }
             catch (SqlException sqlEx)
             {
@@ -228,5 +223,6 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

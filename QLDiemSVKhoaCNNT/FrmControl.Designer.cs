@@ -137,12 +137,13 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(67, 29);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(50, 20);
+            lblTitle.Size = new Size(80, 31);
             lblTitle.TabIndex = 0;
-            lblTitle.Text = "Home";
+            lblTitle.Text = "HOME";
             // 
             // pnlBody
             // 
@@ -162,7 +163,7 @@
             Controls.Add(pnlTop);
             Controls.Add(pnlLeft);
             Name = "FrmControl";
-            Text = "FrmControl";
+            Text = "Trang chính";
             pnlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbxUTELogo).EndInit();
             pnlTop.ResumeLayout(false);

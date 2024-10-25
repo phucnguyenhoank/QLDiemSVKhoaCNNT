@@ -19,15 +19,15 @@ namespace QLDiemSVKhoaCNNT
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void txtThemSinhVien_Click(object sender, EventArgs e)
         {
             try
             {
-                int maSinhVien = int.Parse(textBox2.Text);
-                string hoVaTen = textBox3.Text;
-                string email = textBox4.Text;
-                string soDienThoai = textBox5.Text;
-                string queQuan = textBox6.Text;
+                int maSinhVien = int.Parse(txtMaSinhVien.Text);
+                string hoVaTen = txtHoVaTen.Text;
+                string email = txtEmail.Text;
+                string soDienThoai = txtSoDienThoai.Text;
+                string queQuan = txtQueQuan.Text;
                 SinhVienDAL sinhVienDAL = new SinhVienDAL();
                 sinhVienDAL.ThemSinhVien(maSinhVien, hoVaTen, email, soDienThoai, queQuan);
 
@@ -43,11 +43,11 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnXoaSinhVien_Click(object sender, EventArgs e)
         {
             try
             {
-                int maSinhVien = int.Parse(textBox2.Text);
+                int maSinhVien = int.Parse(txtMaSinhVien.Text);
 
                 SinhVienDAL sinhVienDAL = new SinhVienDAL();
                 sinhVienDAL.XoaSinhVien(maSinhVien);
@@ -69,14 +69,14 @@ namespace QLDiemSVKhoaCNNT
             if (e.RowIndex >= 0)
             {
                 // Lấy dòng hiện tại
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = dgvSinhVien.Rows[e.RowIndex];
 
                 // Gán giá trị từ các ô của dòng vào các TextBox
-                textBox2.Text = row.Cells["MaSinhVien"].Value.ToString();
-                textBox3.Text = row.Cells["HoVaTen"].Value.ToString();
-                textBox4.Text = row.Cells["Email"].Value.ToString();
-                textBox5.Text = row.Cells["SoDienThoai"].Value.ToString();
-                textBox6.Text = row.Cells["QueQuan"].Value.ToString();
+                txtMaSinhVien.Text = row.Cells["MaSinhVien"].Value.ToString();
+                txtHoVaTen.Text = row.Cells["HoVaTen"].Value.ToString();
+                txtEmail.Text = row.Cells["Email"].Value.ToString();
+                txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
+                txtQueQuan.Text = row.Cells["QueQuan"].Value.ToString();
 
             }
         }
@@ -86,7 +86,7 @@ namespace QLDiemSVKhoaCNNT
             try
             {
                 ViewDAL viewDAL = new ViewDAL();
-                dataGridView1.DataSource = viewDAL.GetViewSinhVien();
+                dgvSinhVien.DataSource = viewDAL.GetViewSinhVien();
             }
             catch (SqlException sqlEx)
             {
@@ -98,15 +98,15 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnSuaSinhVien_Click(object sender, EventArgs e)
         {
             try
             {
-                int maSinhVien = int.Parse(textBox2.Text);
-                string hoVaTen = textBox3.Text;
-                string email = textBox4.Text;
-                string soDienThoai = textBox5.Text;
-                string queQuan = textBox6.Text;
+                int maSinhVien = int.Parse(txtMaSinhVien.Text);
+                string hoVaTen = txtHoVaTen.Text;
+                string email = txtEmail.Text;
+                string soDienThoai = txtSoDienThoai.Text;
+                string queQuan = txtQueQuan.Text;
                 SinhVienDAL sinhVienDAL = new SinhVienDAL();
                 sinhVienDAL.SuaSinhVien(maSinhVien, hoVaTen, email, soDienThoai, queQuan);
 
@@ -122,7 +122,7 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnTaiLai_Click(object sender, EventArgs e)
         {
             try
             {
@@ -130,7 +130,7 @@ namespace QLDiemSVKhoaCNNT
                 ViewDAL viewDAL = new ViewDAL();
 
                 // Nạp lại dữ liệu vào DataGridView
-                dataGridView1.DataSource = viewDAL.GetViewSinhVien();
+                dgvSinhVien.DataSource = viewDAL.GetViewSinhVien();
             }
             catch (SqlException sqlEx)
             {
@@ -144,9 +144,9 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnTimKiemSinhVien_Click(object sender, EventArgs e)
         {
-            string maSinhVienTimKiem = textBox1.Text.Trim(); // Lấy mã sinh viên từ TextBox
+            string maSinhVienTimKiem = txtMaSinhVienTimKiem.Text.Trim(); // Lấy mã sinh viên từ TextBox
 
             if (!string.IsNullOrEmpty(maSinhVienTimKiem)) // Kiểm tra mã sinh viên không rỗng
             {
@@ -165,7 +165,7 @@ namespace QLDiemSVKhoaCNNT
                     // Kiểm tra nếu có kết quả tìm kiếm
                     if (dv.Count > 0)
                     {
-                        dataGridView1.DataSource = dv; // Gán DataView đã lọc vào DataGridView
+                        dgvSinhVien.DataSource = dv; // Gán DataView đã lọc vào DataGridView
                     }
                     else
                     {
@@ -193,7 +193,7 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-                Bang_xep_hang_theo_diem bang_Xep_Hang_Theo_Diem = new Bang_xep_hang_theo_diem();
+                FrmBangXepHangDiem bang_Xep_Hang_Theo_Diem = new FrmBangXepHangDiem();
                 bang_Xep_Hang_Theo_Diem.ShowDialog();
             }
             catch (SqlException sqlEx)
@@ -212,7 +212,7 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-                Form_diem1sv form_Diem1Sv = new Form_diem1sv();
+                FrmDiemSinhVien form_Diem1Sv = new FrmDiemSinhVien();
                 form_Diem1Sv.ShowDialog();
             }
             catch (SqlException sqlEx)
@@ -245,5 +245,6 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
