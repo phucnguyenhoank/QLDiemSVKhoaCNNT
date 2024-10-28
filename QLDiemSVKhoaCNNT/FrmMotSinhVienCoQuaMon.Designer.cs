@@ -37,14 +37,14 @@
             // 
             // txtMaSinhVien
             // 
-            txtMaSinhVien.Location = new Point(105, 59);
+            txtMaSinhVien.Location = new Point(35, 52);
             txtMaSinhVien.Name = "txtMaSinhVien";
             txtMaSinhVien.Size = new Size(125, 27);
             txtMaSinhVien.TabIndex = 0;
             // 
             // txtMaMonHoc
             // 
-            txtMaMonHoc.Location = new Point(440, 61);
+            txtMaMonHoc.Location = new Point(183, 52);
             txtMaMonHoc.Name = "txtMaMonHoc";
             txtMaMonHoc.Size = new Size(125, 27);
             txtMaMonHoc.TabIndex = 1;
@@ -52,7 +52,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(105, 30);
+            label1.Location = new Point(35, 23);
             label1.Name = "label1";
             label1.Size = new Size(91, 20);
             label1.TabIndex = 2;
@@ -61,7 +61,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(440, 30);
+            label2.Location = new Point(183, 21);
             label2.Name = "label2";
             label2.Size = new Size(92, 20);
             label2.TabIndex = 3;
@@ -69,7 +69,7 @@
             // 
             // btnKiemTraQuaMon
             // 
-            btnKiemTraQuaMon.Location = new Point(277, 161);
+            btnKiemTraQuaMon.Location = new Point(335, 52);
             btnKiemTraQuaMon.Name = "btnKiemTraQuaMon";
             btnKiemTraQuaMon.Size = new Size(94, 29);
             btnKiemTraQuaMon.TabIndex = 4;

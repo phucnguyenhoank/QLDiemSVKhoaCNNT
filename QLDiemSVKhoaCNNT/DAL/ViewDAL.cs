@@ -157,6 +157,70 @@ namespace QLDiemSVKhoaCNNT.DAL
         }
 
         /// <summary>
+        /// Lấy danh sách lớp học từ view vw_LopHoc.
+        /// </summary>
+        /// <returns>
+        /// Một bảng chứa thông tin của toàn bộ lớp học gồm các cột:
+        /// <br>- MaLopHoc</br>
+        /// <br>- Thu</br>
+        /// <br>- TietBatDau</br>
+        /// <br>- TietKetThuc</br>
+        /// <br>- MaPhongHoc</br>
+        /// <br>- MaGiangVien</br>
+        /// <br>- MaMonHoc</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public DataTable GetViewLopHoc()
+        {
+            try
+            {
+                DataTable danhSachLopHoc = new DataTable();
+
+                // Thiết lập kết nối với cơ sở dữ liệu
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    connection.Open(); // Mở kết nối đến cơ sở dữ liệu
+
+                    // Truy vấn để lấy dữ liệu từ view vw_LopHoc
+                    string query = @"SELECT 
+                                MaLopHoc, 
+                                Thu, 
+                                TietBatDau, 
+                                TietKetThuc, 
+                                MaPhongHoc, 
+                                MaGiangVien, 
+                                MaMonHoc 
+                            FROM vw_LopHoc";
+
+                    // Tạo đối tượng SqlCommand để thực thi truy vấn
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        // Sử dụng SqlDataAdapter để điền dữ liệu vào DataTable
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(danhSachLopHoc); // Điền dữ liệu vào DataTable
+                        }
+                    }
+                }
+
+                return danhSachLopHoc; // Trả về DataTable chứa danh sách lớp học
+            }
+            catch (SqlException)
+            {
+                throw; // Ném lại ngoại lệ SqlException nếu có lỗi xảy ra
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}"); // Ném lại ngoại lệ khác
+            }
+        }
+
+        /// <summary>
         /// Lấy danh sách lớp học và giảng viên phụ trách từ view vw_LopHocGiangVienPhuTrach.
         /// </summary>
         /// <returns>

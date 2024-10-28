@@ -28,199 +28,193 @@
         /// </summary>
         private void InitializeComponent()
         {
-            button5 = new Button();
+            btnTaiLai = new Button();
             label6 = new Label();
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            label1 = new Label();
-            dataGridView1 = new DataGridView();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            button4 = new Button();
-            button3 = new Button();
-            button2 = new Button();
-            button1 = new Button();
+            dgvSinhVien = new DataGridView();
+            txtSoDienThoai = new TextBox();
+            txtEmail = new TextBox();
+            txtHoVaTen = new TextBox();
+            txtMaSinhVien = new TextBox();
+            txtMaSinhVienTimKiem = new TextBox();
+            btnSuaSinhVien = new Button();
+            btnXoaSinhVien = new Button();
+            txtThemSinhVien = new Button();
+            btnTimKiemSinhVien = new Button();
             label7 = new Label();
-            textBox6 = new TextBox();
+            txtQueQuan = new TextBox();
             label2 = new Label();
             btnXemXepHangDTB = new Button();
             btnTongKetDiemSinhVien = new Button();
             btnCapNhatDiem = new Button();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSinhVien).BeginInit();
             SuspendLayout();
             // 
-            // button5
+            // btnTaiLai
             // 
-            button5.Location = new Point(346, 447);
-            button5.Name = "button5";
-            button5.Size = new Size(94, 29);
-            button5.TabIndex = 35;
-            button5.Text = "Tai lai";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            btnTaiLai.Location = new Point(870, 64);
+            btnTaiLai.Name = "btnTaiLai";
+            btnTaiLai.Size = new Size(94, 29);
+            btnTaiLai.TabIndex = 35;
+            btnTaiLai.Text = "Tải lại";
+            btnTaiLai.UseVisualStyleBackColor = true;
+            btnTaiLai.Click += btnTaiLai_Click;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(31, 253);
+            label6.Location = new Point(20, 245);
             label6.Name = "label6";
-            label6.Size = new Size(97, 20);
+            label6.Size = new Size(100, 20);
             label6.TabIndex = 34;
-            label6.Text = "So dien thoai";
+            label6.Text = "Số điện thoại:";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(82, 218);
+            label5.Location = new Point(71, 194);
             label5.Name = "label5";
-            label5.Size = new Size(46, 20);
+            label5.Size = new Size(49, 20);
             label5.TabIndex = 33;
-            label5.Text = "Email";
+            label5.Text = "Email:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(55, 170);
+            label4.Location = new Point(44, 149);
             label4.Name = "label4";
-            label4.Size = new Size(73, 20);
+            label4.Size = new Size(76, 20);
             label4.TabIndex = 32;
-            label4.Text = "Ho va ten";
+            label4.Text = "Họ và tên:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(55, 122);
+            label3.Location = new Point(26, 103);
             label3.Name = "label3";
-            label3.Size = new Size(91, 20);
+            label3.Size = new Size(94, 20);
             label3.TabIndex = 31;
-            label3.Text = "Ma sinh vien";
+            label3.Text = "Mã sinh viên:";
             // 
-            // label1
+            // dgvSinhVien
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(563, 36);
-            label1.Name = "label1";
-            label1.Size = new Size(126, 20);
-            label1.TabIndex = 29;
-            label1.Text = "Quan Ly Sinh Vien";
+            dgvSinhVien.AllowUserToAddRows = false;
+            dgvSinhVien.AllowUserToDeleteRows = false;
+            dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSinhVien.Location = new Point(308, 100);
+            dgvSinhVien.Name = "dgvSinhVien";
+            dgvSinhVien.ReadOnly = true;
+            dgvSinhVien.RowHeadersVisible = false;
+            dgvSinhVien.RowHeadersWidth = 51;
+            dgvSinhVien.Size = new Size(656, 392);
+            dgvSinhVien.TabIndex = 28;
+            dgvSinhVien.CellClick += dataGridView1_CellContentClick;
             // 
-            // dataGridView1
+            // txtSoDienThoai
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(380, 122);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 51;
-            dataGridView1.Size = new Size(698, 272);
-            dataGridView1.TabIndex = 28;
-            dataGridView1.CellClick += dataGridView1_CellContentClick;
+            txtSoDienThoai.Location = new Point(146, 241);
+            txtSoDienThoai.Name = "txtSoDienThoai";
+            txtSoDienThoai.Size = new Size(125, 27);
+            txtSoDienThoai.TabIndex = 27;
             // 
-            // textBox5
+            // txtEmail
             // 
-            textBox5.Location = new Point(157, 253);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(125, 27);
-            textBox5.TabIndex = 27;
+            txtEmail.Location = new Point(146, 194);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(125, 27);
+            txtEmail.TabIndex = 26;
             // 
-            // textBox4
+            // txtHoVaTen
             // 
-            textBox4.Location = new Point(157, 211);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(125, 27);
-            textBox4.TabIndex = 26;
+            txtHoVaTen.Location = new Point(146, 147);
+            txtHoVaTen.Name = "txtHoVaTen";
+            txtHoVaTen.Size = new Size(125, 27);
+            txtHoVaTen.TabIndex = 25;
             // 
-            // textBox3
+            // txtMaSinhVien
             // 
-            textBox3.Location = new Point(157, 163);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(125, 27);
-            textBox3.TabIndex = 25;
+            txtMaSinhVien.Location = new Point(146, 100);
+            txtMaSinhVien.Name = "txtMaSinhVien";
+            txtMaSinhVien.Size = new Size(125, 27);
+            txtMaSinhVien.TabIndex = 24;
             // 
-            // textBox2
+            // txtMaSinhVienTimKiem
             // 
-            textBox2.Location = new Point(157, 119);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 24;
+            txtMaSinhVienTimKiem.Location = new Point(482, 66);
+            txtMaSinhVienTimKiem.Name = "txtMaSinhVienTimKiem";
+            txtMaSinhVienTimKiem.Size = new Size(125, 27);
+            txtMaSinhVienTimKiem.TabIndex = 23;
             // 
-            // textBox1
+            // btnSuaSinhVien
             // 
-            textBox1.Location = new Point(539, 70);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 23;
+            btnSuaSinhVien.Location = new Point(1187, 97);
+            btnSuaSinhVien.Name = "btnSuaSinhVien";
+            btnSuaSinhVien.Size = new Size(94, 29);
+            btnSuaSinhVien.TabIndex = 22;
+            btnSuaSinhVien.Text = "Sửa";
+            btnSuaSinhVien.UseVisualStyleBackColor = true;
+            btnSuaSinhVien.Click += btnSuaSinhVien_Click;
             // 
-            // button4
+            // btnXoaSinhVien
             // 
-            button4.Location = new Point(246, 447);
-            button4.Name = "button4";
-            button4.Size = new Size(94, 29);
-            button4.TabIndex = 22;
-            button4.Text = "Sua";
-            button4.UseVisualStyleBackColor = true;
-            button4.Click += button4_Click;
+            btnXoaSinhVien.Location = new Point(1087, 97);
+            btnXoaSinhVien.Name = "btnXoaSinhVien";
+            btnXoaSinhVien.Size = new Size(94, 29);
+            btnXoaSinhVien.TabIndex = 21;
+            btnXoaSinhVien.Text = "Xóa";
+            btnXoaSinhVien.UseVisualStyleBackColor = true;
+            btnXoaSinhVien.Click += btnXoaSinhVien_Click;
             // 
-            // button3
+            // txtThemSinhVien
             // 
-            button3.Location = new Point(146, 447);
-            button3.Name = "button3";
-            button3.Size = new Size(94, 29);
-            button3.TabIndex = 21;
-            button3.Text = "Xoa";
-            button3.UseVisualStyleBackColor = true;
-            button3.Click += button3_Click;
+            txtThemSinhVien.Location = new Point(987, 97);
+            txtThemSinhVien.Name = "txtThemSinhVien";
+            txtThemSinhVien.Size = new Size(94, 29);
+            txtThemSinhVien.TabIndex = 20;
+            txtThemSinhVien.Text = "Thêm";
+            txtThemSinhVien.UseVisualStyleBackColor = true;
+            txtThemSinhVien.Click += txtThemSinhVien_Click;
             // 
-            // button2
+            // btnTimKiemSinhVien
             // 
-            button2.Location = new Point(46, 447);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 20;
-            button2.Text = "Them";
-            button2.UseVisualStyleBackColor = true;
-            button2.Click += button2_Click;
-            // 
-            // button1
-            // 
-            button1.Location = new Point(769, 73);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 19;
-            button1.Text = "Tim kiem";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnTimKiemSinhVien.Location = new Point(613, 65);
+            btnTimKiemSinhVien.Name = "btnTimKiemSinhVien";
+            btnTimKiemSinhVien.Size = new Size(94, 29);
+            btnTimKiemSinhVien.TabIndex = 19;
+            btnTimKiemSinhVien.Text = "Tìm kiếm";
+            btnTimKiemSinhVien.UseVisualStyleBackColor = true;
+            btnTimKiemSinhVien.Click += btnTimKiemSinhVien_Click;
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(55, 315);
+            label7.Location = new Point(44, 290);
             label7.Name = "label7";
-            label7.Size = new Size(73, 20);
+            label7.Size = new Size(76, 20);
             label7.TabIndex = 36;
-            label7.Text = "Que quan";
+            label7.Text = "Quê quán:";
             // 
-            // textBox6
+            // txtQueQuan
             // 
-            textBox6.Location = new Point(157, 308);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(125, 27);
-            textBox6.TabIndex = 37;
+            txtQueQuan.Location = new Point(146, 288);
+            txtQueQuan.Name = "txtQueQuan";
+            txtQueQuan.Size = new Size(125, 27);
+            txtQueQuan.TabIndex = 37;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(380, 73);
+            label2.Location = new Point(382, 69);
             label2.Name = "label2";
-            label2.Size = new Size(95, 20);
+            label2.Size = new Size(94, 20);
             label2.TabIndex = 38;
-            label2.Text = "Ma Sinh Vien";
+            label2.Text = "Mã sinh viên:";
             // 
             // btnXemXepHangDTB
             // 
-            btnXemXepHangDTB.Location = new Point(458, 447);
+            btnXemXepHangDTB.Location = new Point(986, 132);
             btnXemXepHangDTB.Name = "btnXemXepHangDTB";
             btnXemXepHangDTB.Size = new Size(265, 29);
             btnXemXepHangDTB.TabIndex = 39;
@@ -230,7 +224,7 @@
             // 
             // btnTongKetDiemSinhVien
             // 
-            btnTongKetDiemSinhVien.Location = new Point(744, 447);
+            btnTongKetDiemSinhVien.Location = new Point(986, 202);
             btnTongKetDiemSinhVien.Name = "btnTongKetDiemSinhVien";
             btnTongKetDiemSinhVien.Size = new Size(221, 29);
             btnTongKetDiemSinhVien.TabIndex = 40;
@@ -240,11 +234,11 @@
             // 
             // btnCapNhatDiem
             // 
-            btnCapNhatDiem.Location = new Point(993, 447);
+            btnCapNhatDiem.Location = new Point(987, 167);
             btnCapNhatDiem.Name = "btnCapNhatDiem";
             btnCapNhatDiem.Size = new Size(221, 29);
             btnCapNhatDiem.TabIndex = 41;
-            btnCapNhatDiem.Text = "Cap nhat diem sinh vien";
+            btnCapNhatDiem.Text = "Cập nhật điểm sinh viên";
             btnCapNhatDiem.UseVisualStyleBackColor = true;
             btnCapNhatDiem.Click += btnCapNhatDiem_Click;
             // 
@@ -252,57 +246,55 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1331, 617);
+            ClientSize = new Size(1349, 617);
             Controls.Add(btnCapNhatDiem);
             Controls.Add(btnTongKetDiemSinhVien);
             Controls.Add(btnXemXepHangDTB);
             Controls.Add(label2);
-            Controls.Add(textBox6);
+            Controls.Add(txtQueQuan);
             Controls.Add(label7);
-            Controls.Add(button5);
+            Controls.Add(btnTaiLai);
             Controls.Add(label6);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label1);
-            Controls.Add(dataGridView1);
-            Controls.Add(textBox5);
-            Controls.Add(textBox4);
-            Controls.Add(textBox3);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(button4);
-            Controls.Add(button3);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            Controls.Add(dgvSinhVien);
+            Controls.Add(txtSoDienThoai);
+            Controls.Add(txtEmail);
+            Controls.Add(txtHoVaTen);
+            Controls.Add(txtMaSinhVien);
+            Controls.Add(txtMaSinhVienTimKiem);
+            Controls.Add(btnSuaSinhVien);
+            Controls.Add(btnXoaSinhVien);
+            Controls.Add(txtThemSinhVien);
+            Controls.Add(btnTimKiemSinhVien);
             Name = "FrmQLSinhVien";
-            Text = "FrmQLSinhVien";
+            Text = "Quản lý sinh viên";
             Load += FrmQLSinhVien_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSinhVien).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Button button5;
+        private Button btnTaiLai;
         private Label label6;
         private Label label5;
         private Label label4;
         private Label label3;
-        private Label label1;
-        private DataGridView dataGridView1;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private Button button4;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private DataGridView dgvSinhVien;
+        private TextBox txtSoDienThoai;
+        private TextBox txtEmail;
+        private TextBox txtHoVaTen;
+        private TextBox txtMaSinhVien;
+        private TextBox txtMaSinhVienTimKiem;
+        private Button btnSuaSinhVien;
+        private Button btnXoaSinhVien;
+        private Button txtThemSinhVien;
+        private Button btnTimKiemSinhVien;
         private Label label7;
-        private TextBox textBox6;
+        private TextBox txtQueQuan;
         private Label label2;
         private Button btnXemXepHangDTB;
         private Button btnTongKetDiemSinhVien;

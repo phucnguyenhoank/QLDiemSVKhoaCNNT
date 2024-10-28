@@ -1,6 +1,6 @@
 ﻿namespace QLDiemSVKhoaCNNT
 {
-    partial class Bang_xep_hang_theo_diem
+    partial class FrmBangXepHangDiem
     {
         /// <summary>
         /// Required designer variable.
@@ -55,7 +55,7 @@
             // 
             // button2
             // 
-            button2.Location = new Point(417, 397);
+            button2.Location = new Point(483, 397);
             button2.Name = "button2";
             button2.Size = new Size(110, 41);
             button2.TabIndex = 2;
@@ -71,7 +71,7 @@
             Controls.Add(button1);
             Controls.Add(dataGridView1);
             Name = "Bang_xep_hang_theo_diem";
-            Text = "Bang_xep_hang_theo_diem";
+            Text = "Bảng xếp hạng điểm";
             Load += Bang_xep_hang_theo_diem_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

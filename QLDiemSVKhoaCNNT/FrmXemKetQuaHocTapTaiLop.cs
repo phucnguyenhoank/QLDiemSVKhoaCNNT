@@ -25,8 +25,8 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-                LopHocDAL lopHocDAL = new LopHocDAL();
-                cbxMaLopHoc.DataSource = lopHocDAL.GetViewLopHoc();
+                ViewDAL viewDAL = new ViewDAL();
+                cbxMaLopHoc.DataSource = viewDAL.GetViewLopHoc();
                 cbxMaLopHoc.DisplayMember = "MaLopHoc";
                 cbxMaLopHoc.ValueMember = "MaLopHoc";
                 cbxMaLopHoc.SelectedIndex = 0;

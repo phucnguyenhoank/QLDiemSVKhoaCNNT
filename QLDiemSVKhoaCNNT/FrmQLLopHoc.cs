@@ -26,12 +26,7 @@ namespace QLDiemSVKhoaCNNT
 
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string maGiangVienTimKiem = textBox1.Text.Trim(); // Lấy mã sinh viên từ TextBox
 
@@ -40,10 +35,10 @@ namespace QLDiemSVKhoaCNNT
                 try
                 {
                     // Khởi tạo ViewDAL để lấy dữ liệu
-                    LopHocDAL lopHocDAL = new LopHocDAL();
+                    ViewDAL viewDAL = new ViewDAL();
 
                     // Lấy danh sách sinh viên
-                    DataTable dtLopHoc = lopHocDAL.GetViewLopHoc();
+                    DataTable dtLopHoc = viewDAL.GetViewLopHoc();
 
                     // Sử dụng DataView để lọc dữ liệu theo Mã sinh viên
                     DataView dv = new DataView(dtLopHoc);
@@ -52,7 +47,7 @@ namespace QLDiemSVKhoaCNNT
                     // Kiểm tra nếu có kết quả tìm kiếm
                     if (dv.Count > 0)
                     {
-                        dataGridView1.DataSource = dv; // Gán DataView đã lọc vào DataGridView
+                        dgvLopHoc.DataSource = dv; // Gán DataView đã lọc vào DataGridView
                     }
                     else
                     {
@@ -82,16 +77,16 @@ namespace QLDiemSVKhoaCNNT
             if (e.RowIndex >= 0)
             {
                 // Lấy dòng hiện tại
-                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                DataGridViewRow row = dgvLopHoc.Rows[e.RowIndex];
 
                 // Gán giá trị từ các ô của dòng vào các TextBox
                 textBox2.Text = row.Cells["MaLopHoc"].Value.ToString();
-                comboBox6.Text = row.Cells["Thu"].Value.ToString();
-                comboBox1.Text = row.Cells["TietBatDau"].Value.ToString();
-                comboBox2.Text = row.Cells["TietKetThuc"].Value.ToString();
-                comboBox3.Text = row.Cells["MaPhongHoc"].Value.ToString();
-                comboBox4.Text = row.Cells["MaGiangVien"].Value.ToString();
-                comboBox5.Text = row.Cells["MaMonHoc"].Value.ToString();
+                cbxThu.Text = row.Cells["Thu"].Value.ToString();
+                cbxTietBatDau.Text = row.Cells["TietBatDau"].Value.ToString();
+                cbxTietKetThuc.Text = row.Cells["TietKetThuc"].Value.ToString();
+                cbxMaPhongHoc.Text = row.Cells["MaPhongHoc"].Value.ToString();
+                cbxMaGiangVien.Text = row.Cells["MaGiangVien"].Value.ToString();
+                cbxMaMonHoc.Text = row.Cells["MaMonHoc"].Value.ToString();
 
             }
         }
@@ -100,16 +95,21 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-                ViewDAL monHocDAL = new ViewDAL();
-                comboBox5.DataSource = monHocDAL.GetViewMonHoc();
-                comboBox5.DisplayMember = "MaMonHoc";
-                comboBox5.ValueMember = "MaMonHoc";
-                comboBox5.SelectedIndex = 0;
-                ViewDAL giangVienDAl = new ViewDAL();
-                comboBox4.DataSource = giangVienDAl.GetViewGiangVien();
-                comboBox4.DisplayMember = "MaGiangVien";
-                comboBox4.ValueMember = "MaGiangVien";
-                comboBox4.SelectedIndex = 0;
+                ViewDAL viewDAL = new ViewDAL();
+                cbxMaMonHoc.DataSource = viewDAL.GetViewMonHoc();
+                cbxMaMonHoc.DisplayMember = "MaMonHoc";
+                cbxMaMonHoc.ValueMember = "MaMonHoc";
+                cbxMaMonHoc.SelectedIndex = 0;
+
+                cbxMaGiangVien.DataSource = viewDAL.GetViewGiangVien();
+                cbxMaGiangVien.DisplayMember = "MaGiangVien";
+                cbxMaGiangVien.ValueMember = "MaGiangVien";
+                cbxMaGiangVien.SelectedIndex = 0;
+
+                cbxThu.SelectedIndex = 0;
+                cbxTietBatDau.SelectedIndex = 0;
+                cbxTietKetThuc.SelectedIndex = 0;
+
                 using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand("select * from PhongHoc", connection))
@@ -117,22 +117,15 @@ namespace QLDiemSVKhoaCNNT
                         SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                         DataTable dt = new DataTable();
                         adapter.Fill(dt);
-                        comboBox3.DataSource = dt;
-                        comboBox3.DisplayMember = "MaPhongHoc";
-                        comboBox3.ValueMember = "MaPhongHoc";
+                        cbxMaPhongHoc.DataSource = dt;
+                        cbxMaPhongHoc.DisplayMember = "MaPhongHoc";
+                        cbxMaPhongHoc.ValueMember = "MaPhongHoc";
+                        cbxMaPhongHoc.SelectedIndex = 0;
                     }
                 }
 
-            }
-            catch (SqlException sqlEx)
-            {
+                dgvLopHoc.DataSource = viewDAL.GetViewLopHoc();
 
-                MessageBox.Show(sqlEx.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            try
-            {
-                LopHocDAL viewDAL = new LopHocDAL();
-                dataGridView1.DataSource = viewDAL.GetViewLopHoc();
             }
             catch (SqlException sqlEx)
             {
@@ -142,25 +135,33 @@ namespace QLDiemSVKhoaCNNT
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnThemLopHoc_Click(object sender, EventArgs e)
         {
             try
             {
                 int MaLopHoc = int.Parse(textBox2.Text); ;
-                byte Thu = byte.Parse(comboBox6.Text);
-                byte TietBatDau = byte.Parse(comboBox1.Text);
-                byte TietKetThu = byte.Parse(comboBox2.Text);
-                int MaPhongHoc = int.Parse(comboBox3.Text);
-                int MaGiangVien = int.Parse(comboBox4.Text);
-                int MaMonHoc = int.Parse(comboBox5.Text);
+                byte Thu = byte.Parse(cbxThu.Text);
+                byte TietBatDau = byte.Parse(cbxTietBatDau.Text);
+                byte TietKetThu = byte.Parse(cbxTietKetThuc.Text);
+                int MaPhongHoc = int.Parse(cbxMaPhongHoc.Text);
+                int MaGiangVien = int.Parse(cbxMaGiangVien.Text);
+                int MaMonHoc = int.Parse(cbxMaMonHoc.Text);
 
                 LopHocDAL lopHocDAL = new LopHocDAL();
-                lopHocDAL.ThemLopHoc(MaLopHoc, Thu, TietBatDau, TietKetThu, MaPhongHoc, MaGiangVien, MaMonHoc);
+                int kq = lopHocDAL.ThemLopHoc(MaLopHoc, Thu, TietBatDau, TietKetThu, MaPhongHoc, MaGiangVien, MaMonHoc);
+                if (kq > 0)
+                {
+                    MessageBox.Show($"Thêm lớp học {MaLopHoc} thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Thêm lớp học {MaLopHoc} thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
 
-                MessageBox.Show($"Them lop hoc {MaLopHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
             {
@@ -172,15 +173,15 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button5_Click(object sender, EventArgs e)
+        private void btnTaiLai_Click(object sender, EventArgs e)
         {
             try
             {
                 // Khởi tạo lại lớp ViewDAL để lấy dữ liệu mới
-                LopHocDAL viewDAL = new LopHocDAL();
+                ViewDAL viewDAL = new ViewDAL();
 
                 // Nạp lại dữ liệu vào DataGridView
-                dataGridView1.DataSource = viewDAL.GetViewLopHoc();
+                dgvLopHoc.DataSource = viewDAL.GetViewLopHoc();
             }
             catch (SqlException sqlEx)
             {
@@ -194,7 +195,7 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnXoaLopHoc_Click(object sender, EventArgs e)
         {
             try
             {
@@ -214,17 +215,17 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnSuaLopHoc_Click(object sender, EventArgs e)
         {
             try
             {
                 int MaLopHoc = int.Parse(textBox2.Text); ;
-                byte Thu = byte.Parse(comboBox6.Text);
-                byte TietBatDau = byte.Parse(comboBox1.Text);
-                byte TietKetThu = byte.Parse(comboBox2.Text);
-                int MaPhongHoc = int.Parse(comboBox3.Text);
-                int MaGiangVien = int.Parse(comboBox4.Text);
-                int MaMonHoc = int.Parse(comboBox5.Text);
+                byte Thu = byte.Parse(cbxThu.Text);
+                byte TietBatDau = byte.Parse(cbxTietBatDau.Text);
+                byte TietKetThu = byte.Parse(cbxTietKetThuc.Text);
+                int MaPhongHoc = int.Parse(cbxMaPhongHoc.Text);
+                int MaGiangVien = int.Parse(cbxMaGiangVien.Text);
+                int MaMonHoc = int.Parse(cbxMaMonHoc.Text);
 
                 LopHocDAL lopHocDAL = new LopHocDAL();
                 lopHocDAL.CapNhatGiangVienVaoLop(MaGiangVien, MaLopHoc);
@@ -283,7 +284,7 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-                DKSinhVien dKSinhVien = new DKSinhVien();
+                FrmDangKySinhVien dKSinhVien = new FrmDangKySinhVien();
                 dKSinhVien.ShowDialog();
             }
             catch (SqlException sqlEx)
@@ -316,5 +317,6 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

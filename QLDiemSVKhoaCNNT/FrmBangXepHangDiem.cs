@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace QLDiemSVKhoaCNNT
 {
-    public partial class Bang_xep_hang_theo_diem : Form
+    public partial class FrmBangXepHangDiem : Form
     {
-        public Bang_xep_hang_theo_diem()
+        public FrmBangXepHangDiem()
         {
             InitializeComponent();
         }

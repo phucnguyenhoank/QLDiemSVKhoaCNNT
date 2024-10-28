@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace QLDiemSVKhoaCNNT
 {
-    public partial class Form_diem1sv : Form
+    public partial class FrmDiemSinhVien : Form
     {
-        public Form_diem1sv()
+        public FrmDiemSinhVien()
         {
             InitializeComponent();
         }
