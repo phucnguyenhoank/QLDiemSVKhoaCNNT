@@ -106,47 +106,6 @@ namespace QLDiemSVKhoaCNNT.DAL
         }
 
         /// <summary>
-        /// Cập nhật giảng viên vào lớp học trong cơ sở dữ liệu.
-        /// </summary>
-        /// <param name="maGiangVien">Mã giảng viên cần cập nhật vào lớp học.</param>
-        /// <param name="maLopHoc">Mã lớp học mà giảng viên sẽ được cập nhật vào.</param>
-        /// <returns>Trả về số lượng bản ghi bị ảnh hưởng (0 hoặc 1) sau khi thực hiện cập nhật.</returns>
-        /// <exception cref="SqlException">
-        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
-        /// </exception>
-        /// <exception cref="Exception">
-        /// Ném ra khi có lỗi khác không xác định xảy ra.
-        /// </exception>
-        public int CapNhatGiangVienVaoLop(int maGiangVien, int maLopHoc)
-        {
-            try
-            {
-                string connectionString = QLDSVCNTTConnection.connectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("proc_CapNhatGiangVienVaoLop", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@MaGiangVien", maGiangVien);
-                        command.Parameters.AddWithValue("@MaLopHoc", maLopHoc);
-
-                        // Thực hiện thủ tục và trả về số lượng bản ghi bị ảnh hưởng
-                        return command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error: {ex.Message}");
-            }
-        }
-
-        /// <summary>
         /// Gọi thủ tục proc_XemKetQuaHocTapCuaLop để lấy danh sách kết quả học tập môn học được dạy tại lớp học, kết quả này là bảng điểm của sinh viên với môn học được dạy. 
         /// và xếp loại học lực dựa trên điểm trung bình môn.
         /// </summary>
