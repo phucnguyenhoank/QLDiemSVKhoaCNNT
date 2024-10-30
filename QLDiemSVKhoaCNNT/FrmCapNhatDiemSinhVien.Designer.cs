@@ -32,6 +32,7 @@
             label1 = new Label();
             label2 = new Label();
             dgvSinhVienCuaLop = new DataGridView();
+            btnCapNhatDiem = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSinhVienCuaLop).BeginInit();
             SuspendLayout();
             // 
@@ -73,11 +74,22 @@
             dgvSinhVienCuaLop.TabIndex = 3;
             dgvSinhVienCuaLop.CellValueChanged += dgvSinhVienCuaLop_CellValueChanged;
             // 
+            // btnCapNhatDiem
+            // 
+            btnCapNhatDiem.Location = new Point(632, 102);
+            btnCapNhatDiem.Name = "btnCapNhatDiem";
+            btnCapNhatDiem.Size = new Size(131, 29);
+            btnCapNhatDiem.TabIndex = 23;
+            btnCapNhatDiem.Text = "Cập nhật điểm";
+            btnCapNhatDiem.UseVisualStyleBackColor = true;
+            btnCapNhatDiem.Click += btnCapNhatDiem_Click;
+            // 
             // FrmCapNhatDiemSinhVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnCapNhatDiem);
             Controls.Add(dgvSinhVienCuaLop);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -96,5 +108,6 @@
         private Label label1;
         private Label label2;
         private DataGridView dgvSinhVienCuaLop;
+        private Button btnCapNhatDiem;
     }
 }

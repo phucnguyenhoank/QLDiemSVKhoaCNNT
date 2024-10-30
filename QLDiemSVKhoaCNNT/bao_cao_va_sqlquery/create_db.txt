@@ -76,7 +76,12 @@ CREATE TABLE DangKy (
     CONSTRAINT FK_DangKy_LopHoc FOREIGN KEY (MaLopHoc) REFERENCES LopHoc(MaLopHoc) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE GUIMAIL (ThongDiep NVARCHAR(100))
+CREATE TABLE Account (
+    AccUsername VARCHAR(50), 
+    AccPassword VARCHAR(50) NOT NULL, 
+    AccRole VARCHAR(50) NOT NULL,
+    CONSTRAINT PK_Account PRIMARY KEY (AccUsername)
+);
 
 -- TRIGGER: 4 LOẠI
 /*
@@ -138,7 +143,6 @@ BEGIN
     END;
 
     IF @Email NOT LIKE '_%@_%._%'
-        OR @SoDienThoai LIKE '%[^0-9]%'
     BEGIN
         RAISERROR('Email không đúng định dạng.', 16, 1);
         RETURN;
@@ -342,7 +346,7 @@ BEGIN
     DECLARE @MaLopHocTrung INT;
     SELECT @MaLopHocTrung = lh.MaLopHoc
     FROM LopHoc lh
-    WHERE lh.MaPhongHoc = @MaPhongHoc AND lh.Thu = @Thu AND
+    WHERE lh.MaLopHoc != @MaLopHoc AND lh.MaPhongHoc = @MaPhongHoc AND lh.Thu = @Thu AND
     (
         (@TietKetThuc BETWEEN lh.TietBatDau AND lh.TietKetThuc)OR
         (@TietBatDau BETWEEN lh.TietBatDau AND lh.TietKetThuc)
@@ -866,14 +870,14 @@ BEGIN
         DECLARE @MaLopHocTrung INT;
         SELECT @MaLopHocTrung = lh.MaLopHoc
         FROM LopHoc lh
-        WHERE lh.MaPhongHoc = @MaPhongHoc AND lh.Thu = @Thu AND
+        WHERE lh.MaLopHoc != @MaLopHoc AND lh.MaPhongHoc = @MaPhongHoc AND lh.Thu = @Thu AND
         (
             (@TietKetThuc BETWEEN lh.TietBatDau AND lh.TietKetThuc)OR
             (@TietBatDau BETWEEN lh.TietBatDau AND lh.TietKetThuc)
         )
         IF @MaLopHocTrung IS NOT NULL
         BEGIN
-            RAISERROR ('Lớp học %d cần được thêm bị trùng lịch với lớp học %d cùng phòng.', 16, 1, @MaLopHoc, @MaLopHocTrung);
+            RAISERROR ('Lớp học %d cần sửa bị trùng lịch với lớp học %d cùng phòng.', 16, 1, @MaLopHoc, @MaLopHocTrung);
             RETURN;
         END
 

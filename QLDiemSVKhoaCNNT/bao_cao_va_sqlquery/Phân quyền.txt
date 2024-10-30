@@ -1,0 +1,50 @@
+Role thấp sử dụng được chức năng A thì role cao hơn cũng có: Môn học, lớp học < Sinh viên < Giảng viên < Admin
+
+Môn học:
+xxx
+
+
+Sinh viên:
+danh sách môn học,
+danh sách lớp học,
+các lớp học còn trống,
+đăng ký sinh viên vào lớp học,
+xem học lực một sinh viên (chỉ xem cá nhân/bị động)
+tính số tín chỉ hoàn thành của một sinh viên (chỉ xem cá nhân),
+xem bảng điểm của một sinh viên (bị động/chỉ xem cá nhân),
+tính điểm trung bình của một sinh viên (bị động/chỉ xem cá nhân)
+tính điểm trung bình tích lũy của một sinh viên (bị động/chỉ xem cá nhân)
+
+
+Giảng viên:
+danh sách sinh viên,
+những lớp học giảng viên phụ trách (chỉ xem cá nhân),
+điểm trung bình các sinh viên,
+điểm trung bình tích lũy các sinh viên,
+bảng xếp hạng các sinh viên bằng điểm trung bình tích lũy
+thêm sinh viên,
+cập nhật điểm sinh viên,
+xem điểm học của các sinh viên tại 1 lớp,
+kiểm tra 1 sinh viên có qua môn,
+đếm số lượng sinh viên của một lớp học,
+tính phần trăm qua môn của một lớp,
+số lớp học giảng viên đang phụ trách (bị động/xem cá nhân),
+lấy danh sách sinh viên với điểm trong một lớp,
+
+
+
+
+Admin:
+danh sách giảng viên,
+thêm giảng viên
+thêm môn học,
+thêm lớp học,
+xóa sinh viên,
+xóa giảng viên,
+xóa môn học,
+xóa lớp học,
+sửa thông tin sinh viên,
+sửa thông tin giảng viên,
+sửa thông tin môn học,
+sửa lớp học,
+

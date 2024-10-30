@@ -64,5 +64,11 @@ namespace QLDiemSVKhoaCNNT
             OpenChildForm(new FrmQLLopHoc());
             lblTitle.Text = "QUẢN LÝ LỚP HỌC";
         }
+
+        private void btnAdmin_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FrmQLGiangVien());
+            lblTitle.Text = "XIN CHÀO QUẢN TRỊ VIÊN";
+        }
     }
 }

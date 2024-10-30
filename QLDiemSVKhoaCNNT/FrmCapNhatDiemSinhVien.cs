@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace QLDiemSVKhoaCNNT
         public FrmCapNhatDiemSinhVien()
         {
             InitializeComponent();
-            
+
         }
 
         private void LoadLopHoc()
@@ -52,20 +53,29 @@ namespace QLDiemSVKhoaCNNT
 
         private void dgvSinhVienCuaLop_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            // Chỉ xử lý khi cột DiemQuaTrinh hoặc DiemCuoiKy thay đổi
-            if (e.ColumnIndex == dgvSinhVienCuaLop.Columns["DiemQuaTrinh"].Index ||
-                e.ColumnIndex == dgvSinhVienCuaLop.Columns["DiemCuoiKy"].Index)
+            
+        }
+
+        private void FrmCapNhatDiemSinhVien_Load(object sender, EventArgs e)
+        {
+            LoadLopHoc();
+        }
+
+        private void btnCapNhatDiem_Click(object sender, EventArgs e)
+        {
+            try
             {
-                // Lấy mã sinh viên và mã lớp học từ DataGridView
-                int maSinhVien = (int)dgvSinhVienCuaLop.Rows[e.RowIndex].Cells["MaSinhVien"].Value;
-                int maLopHoc = int.Parse(cbxMaLopHoc.SelectedValue.ToString());
-
-                // Lấy giá trị điểm đã được chỉnh sửa
-                decimal diemQuaTrinh = Convert.ToDecimal(dgvSinhVienCuaLop.Rows[e.RowIndex].Cells["DiemQuaTrinh"].Value);
-                decimal diemCuoiKy = Convert.ToDecimal(dgvSinhVienCuaLop.Rows[e.RowIndex].Cells["DiemCuoiKy"].Value);
-
-                try
+                // Kiểm tra nếu có dòng nào được chọn
+                if (dgvSinhVienCuaLop.CurrentRow != null)
                 {
+                    // Lấy mã sinh viên và mã lớp học từ DataGridView
+                    int maSinhVien = Convert.ToInt32(dgvSinhVienCuaLop.CurrentRow.Cells["MaSinhVien"].Value);
+                    int maLopHoc = Convert.ToInt32(cbxMaLopHoc.SelectedValue.ToString());
+
+                    // Lấy giá trị điểm đã được chỉnh sửa
+                    decimal diemQuaTrinh = Convert.ToDecimal(dgvSinhVienCuaLop.CurrentRow.Cells["DiemQuaTrinh"].Value);
+                    decimal diemCuoiKy = Convert.ToDecimal(dgvSinhVienCuaLop.CurrentRow.Cells["DiemCuoiKy"].Value);
+
                     // Gọi hàm cập nhật điểm
                     ProcedureDAL procedureDAL = new ProcedureDAL();
                     int result = procedureDAL.CapNhatDiem(maSinhVien, maLopHoc, diemQuaTrinh, diemCuoiKy);
@@ -78,17 +88,17 @@ namespace QLDiemSVKhoaCNNT
                     {
                         MessageBox.Show("Không có thay đổi nào được cập nhật.", "Thông báo");
                     }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi khi cập nhật điểm: {ex.Message}", "Lỗi");
+
                 }
             }
-        }
-
-        private void FrmCapNhatDiemSinhVien_Load(object sender, EventArgs e)
-        {
-            LoadLopHoc();
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnXemHocLuc_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi khi cập nhật điểmbtnXemHocLuc_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
