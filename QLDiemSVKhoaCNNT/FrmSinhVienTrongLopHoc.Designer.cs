@@ -75,7 +75,7 @@
             Controls.Add(lblSoLuongSV);
             Controls.Add(dgvDanhSachSV);
             Name = "FrmSinhVienTrongLopHoc";
-            Text = "FrmSinhVienTrongLopHoc";
+            Text = "Danh sách sinh viên trong lớp học";
             Load += FrmSinhVienTrongLopHoc_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachSV).EndInit();
             ResumeLayout(false);
