@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             pnlLeft = new Panel();
-            btnAdmin = new Button();
             btnLopHoc = new Button();
             btnMonHoc = new Button();
             btnGiangVien = new Button();
@@ -46,7 +45,6 @@
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.Navy;
-            pnlLeft.Controls.Add(btnAdmin);
             pnlLeft.Controls.Add(btnLopHoc);
             pnlLeft.Controls.Add(btnMonHoc);
             pnlLeft.Controls.Add(btnGiangVien);
@@ -57,20 +55,6 @@
             pnlLeft.Name = "pnlLeft";
             pnlLeft.Size = new Size(144, 704);
             pnlLeft.TabIndex = 0;
-            // 
-            // btnAdmin
-            // 
-            btnAdmin.BackColor = Color.FromArgb(0, 0, 64);
-            btnAdmin.Dock = DockStyle.Top;
-            btnAdmin.FlatStyle = FlatStyle.Flat;
-            btnAdmin.ForeColor = Color.White;
-            btnAdmin.Location = new Point(0, 371);
-            btnAdmin.Name = "btnAdmin";
-            btnAdmin.Size = new Size(144, 52);
-            btnAdmin.TabIndex = 5;
-            btnAdmin.Text = "Admin";
-            btnAdmin.UseVisualStyleBackColor = false;
-            btnAdmin.Click += btnAdmin_Click;
             // 
             // btnLopHoc
             // 
@@ -198,6 +182,5 @@
         private Button btnMonHoc;
         private Button btnGiangVien;
         private Label lblTitle;
-        private Button btnAdmin;
     }
 }
