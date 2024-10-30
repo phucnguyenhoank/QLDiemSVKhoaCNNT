@@ -64,5 +64,6 @@ namespace QLDiemSVKhoaCNNT
             OpenChildForm(new FrmQLLopHoc());
             lblTitle.Text = "QUẢN LÝ LỚP HỌC";
         }
+
     }
 }

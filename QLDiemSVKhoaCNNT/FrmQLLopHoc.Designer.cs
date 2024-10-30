@@ -33,7 +33,6 @@
             label5 = new Label();
             label4 = new Label();
             label3 = new Label();
-            label1 = new Label();
             dgvLopHoc = new DataGridView();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
@@ -103,15 +102,6 @@
             label3.Size = new Size(87, 20);
             label3.TabIndex = 65;
             label3.Text = "Mã lớp học:";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(263, 21);
-            label1.Name = "label1";
-            label1.Size = new Size(113, 20);
-            label1.TabIndex = 64;
-            label1.Text = "Quản lý lớp học";
             // 
             // dgvLopHoc
             // 
@@ -211,7 +201,6 @@
             // 
             // cbxTietBatDau
             // 
-            cbxTietBatDau.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTietBatDau.FormattingEnabled = true;
             cbxTietBatDau.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
             cbxTietBatDau.Location = new Point(151, 177);
@@ -221,7 +210,6 @@
             // 
             // cbxTietKetThuc
             // 
-            cbxTietKetThuc.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxTietKetThuc.FormattingEnabled = true;
             cbxTietKetThuc.Items.AddRange(new object[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" });
             cbxTietKetThuc.Location = new Point(151, 214);
@@ -258,7 +246,6 @@
             // 
             // cbxThu
             // 
-            cbxThu.DropDownStyle = ComboBoxStyle.DropDownList;
             cbxThu.FormattingEnabled = true;
             cbxThu.Items.AddRange(new object[] { "2", "3", "4", "5", "6", "7" });
             cbxThu.Location = new Point(151, 140);
@@ -339,7 +326,6 @@
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
-            Controls.Add(label1);
             Controls.Add(dgvLopHoc);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
@@ -362,7 +348,6 @@
         private Label label5;
         private Label label4;
         private Label label3;
-        private Label label1;
         private DataGridView dgvLopHoc;
         private TextBox textBox2;
         private TextBox textBox1;
