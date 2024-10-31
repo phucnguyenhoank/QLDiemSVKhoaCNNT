@@ -49,6 +49,7 @@
             btnXemXepHangDTB = new Button();
             btnTongKetDiemSinhVien = new Button();
             btnCapNhatDiem = new Button();
+            btnXemTKB = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvSinhVien).BeginInit();
             SuspendLayout();
             // 
@@ -242,11 +243,22 @@
             btnCapNhatDiem.UseVisualStyleBackColor = true;
             btnCapNhatDiem.Click += btnCapNhatDiem_Click;
             // 
+            // btnXemTKB
+            // 
+            btnXemTKB.Location = new Point(987, 245);
+            btnXemTKB.Name = "btnXemTKB";
+            btnXemTKB.Size = new Size(221, 29);
+            btnXemTKB.TabIndex = 42;
+            btnXemTKB.Text = "Xem thời khóa biểu";
+            btnXemTKB.UseVisualStyleBackColor = true;
+            btnXemTKB.Click += btnXemTKB_Click;
+            // 
             // FrmQLSinhVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1349, 617);
+            Controls.Add(btnXemTKB);
             Controls.Add(btnCapNhatDiem);
             Controls.Add(btnTongKetDiemSinhVien);
             Controls.Add(btnXemXepHangDTB);
@@ -299,5 +311,6 @@
         private Button btnXemXepHangDTB;
         private Button btnTongKetDiemSinhVien;
         private Button btnCapNhatDiem;
+        private Button btnXemTKB;
     }
 }

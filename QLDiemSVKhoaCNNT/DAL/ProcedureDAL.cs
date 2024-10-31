@@ -159,6 +159,38 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+        public DataTable xemThoiKhoaBieu1SV(int maSV)
+        {
+            try
+            {
+                DataTable thoiKhoaBieu = new DataTable();
+                String connectionString = QLDSVCNTTConnection.connectionString;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand("proc_XemThoiKhoaBieuSinhVien", connection))
+                    {
+                        command.CommandType = CommandType.StoredProcedure;
+                        command.Parameters.AddWithValue("@MaSinhVien", maSV);
+
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                           thoiKhoaBieu.Load(reader);
+                            return thoiKhoaBieu;
+                        }
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
 
     }
 }
