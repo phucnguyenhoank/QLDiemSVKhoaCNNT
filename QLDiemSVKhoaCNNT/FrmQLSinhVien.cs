@@ -63,7 +63,6 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-
         private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)

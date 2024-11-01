@@ -1070,7 +1070,7 @@ BEGIN
         dk.MaSinhVien = @MaSinhVien
     ORDER BY 
         lh.Thu, lh.TietBatDau;
-END
+END;
 
 
 GO
@@ -1337,7 +1337,7 @@ BEGIN
     RETURN;
 END;
 
-go
+GO
 CREATE FUNCTION dbo.fn_TinhDiemTrungBinh (
     @MaSinhVien INT
 )
@@ -1391,7 +1391,6 @@ BEGIN
     RETURN @DiemTrungBinhTichLuy;
 END;
 
-
 GO
 CREATE FUNCTION dbo.fn_DemSoLuongLopDangKy (
     @MaSinhVien INT
@@ -1408,7 +1407,6 @@ BEGIN
 
     RETURN @SoLuongLop;
 END;
-
 
 
 GO

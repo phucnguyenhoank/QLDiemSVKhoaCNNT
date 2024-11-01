@@ -159,7 +159,27 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
-        public DataTable XemThoiKhoaBieu1SV(int maSV)
+        /// <summary>
+        /// Gọi thủ tục proc_XemThoiKhoaBieuSinhVien để lấy thời khóa biểu của sinh viên.
+        /// </summary>
+        /// <param name="maSinhVien">Mã sinh viên cần xem thời khóa biểu.</param>
+        /// <returns>
+        /// Danh sách các sinh viên bao gồm:
+        /// <br>- Thu: thứ của lớp học.</br>
+        /// <br>- TietBatDau: Tiết bắt đầu.</br>
+        /// <br>- TietKetThuc: Tiết kết thúc.</br>
+        /// <br>- TenMonHoc: Tên môn học được dạy tại lớp.</br>
+        /// <br>- SoTinChi: Số tín chỉ của môn học.</br>
+        /// <br>- TenGiangVien: Xếp loại học lực (Giỏi, Khá, Trung Bình, Yếu, hoặc Chưa biết nếu thiếu điểm).</br>
+        /// <br>- MaPhongHoc: Trạng thái qua môn (QUA, RỚT hoặc Chưa biết nếu thiếu điểm).</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public DataTable XemThoiKhoaBieu1SV(int maSinhVien)
         {
             try
             {
@@ -172,7 +192,7 @@ namespace QLDiemSVKhoaCNNT.DAL
                     using (SqlCommand command = new SqlCommand("proc_XemThoiKhoaBieuSinhVien", connection))
                     {
                         command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@MaSinhVien", maSV);
+                        command.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
 
                         using (SqlDataReader reader = command.ExecuteReader())
                         {
