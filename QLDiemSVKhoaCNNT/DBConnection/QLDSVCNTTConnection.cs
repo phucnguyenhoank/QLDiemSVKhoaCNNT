@@ -11,7 +11,7 @@ namespace QLDiemSVKhoaCNNT.DBConnection
 {
     internal class QLDSVCNTTConnection
     {
-        public const string connectionString = @"Data Source=LAPTOP-EC6KMGRU;Initial Catalog=QLDiemSVKhoaCNTT;Integrated Security=True;TrustServerCertificate=True";
+        public const string connectionString = @"Data Source=xichxo;Initial Catalog=QLDiemSVKhoaCNTT;Integrated Security=True;TrustServerCertificate=True";
 
         /// <summary>
         /// Test the database connection.

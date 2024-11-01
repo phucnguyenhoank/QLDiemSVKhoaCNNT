@@ -50,6 +50,7 @@
             btnTongKetDiemSinhVien = new Button();
             btnCapNhatDiem = new Button();
             btnXemTKB = new Button();
+            lblSoLuongLop1SinhVienDangKy = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSinhVien).BeginInit();
             SuspendLayout();
             // 
@@ -112,6 +113,7 @@
             dgvSinhVien.Size = new Size(656, 392);
             dgvSinhVien.TabIndex = 28;
             dgvSinhVien.CellClick += dataGridView1_CellContentClick;
+            dgvSinhVien.CellContentClick += dgvSinhVien_CellContentClick;
             // 
             // txtSoDienThoai
             // 
@@ -253,11 +255,21 @@
             btnXemTKB.UseVisualStyleBackColor = true;
             btnXemTKB.Click += btnXemTKB_Click;
             // 
+            // lblSoLuongLop1SinhVienDangKy
+            // 
+            lblSoLuongLop1SinhVienDangKy.AutoSize = true;
+            lblSoLuongLop1SinhVienDangKy.Location = new Point(71, 356);
+            lblSoLuongLop1SinhVienDangKy.Name = "lblSoLuongLop1SinhVienDangKy";
+            lblSoLuongLop1SinhVienDangKy.Size = new Size(123, 20);
+            lblSoLuongLop1SinhVienDangKy.TabIndex = 43;
+            lblSoLuongLop1SinhVienDangKy.Text = "Đã đăng ký ... lớp";
+            // 
             // FrmQLSinhVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1349, 617);
+            Controls.Add(lblSoLuongLop1SinhVienDangKy);
             Controls.Add(btnXemTKB);
             Controls.Add(btnCapNhatDiem);
             Controls.Add(btnTongKetDiemSinhVien);
@@ -312,5 +324,6 @@
         private Button btnTongKetDiemSinhVien;
         private Button btnCapNhatDiem;
         private Button btnXemTKB;
+        private Label lblSoLuongLop1SinhVienDangKy;
     }
 }

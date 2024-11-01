@@ -1040,6 +1040,40 @@ BEGIN
 END;
 
 GO
+CREATE PROCEDURE proc_XemThoiKhoaBieuSinhVien
+    @MaSinhVien INT
+AS
+BEGIN
+    -- Kiểm tra xem sinh viên có tồn tại không
+    IF NOT EXISTS (SELECT 1 FROM SinhVien WHERE MaSinhVien = @MaSinhVien)
+    BEGIN
+        RAISERROR('Sinh viên không tồn tại.', 16, 1)
+        RETURN
+    END
+
+    -- Truy vấn thông tin thời khóa biểu của sinh viên
+    SELECT 
+        lh.Thu,
+        lh.TietBatDau,
+        lh.TietKetThuc,
+        mh.TenMonHoc,
+        mh.SoTinChi,
+        gv.HoVaTen AS TenGiangVien,
+        ph.MaPhongHoc
+    FROM 
+        DangKy dk
+        JOIN LopHoc lh ON dk.MaLopHoc = lh.MaLopHoc
+        JOIN MonHoc mh ON lh.MaMonHoc = mh.MaMonHoc
+        JOIN GiangVien gv ON lh.MaGiangVien = gv.MaGiangVien
+        JOIN PhongHoc ph ON lh.MaPhongHoc = ph.MaPhongHoc
+    WHERE 
+        dk.MaSinhVien = @MaSinhVien
+    ORDER BY 
+        lh.Thu, lh.TietBatDau;
+END
+
+
+GO
 CREATE FUNCTION dbo.fn_KiemTraQuaMon (
     @MaSinhVien INT,
     @MaMonHoc INT
@@ -1356,6 +1390,25 @@ BEGIN
     -- Trả về điểm trung bình tích lũy
     RETURN @DiemTrungBinhTichLuy;
 END;
+
+
+GO
+CREATE FUNCTION dbo.fn_DemSoLuongLopDangKy (
+    @MaSinhVien INT
+)
+RETURNS INT
+AS
+BEGIN
+    DECLARE @SoLuongLop INT;
+
+    -- Đếm số lượng lớp mà sinh viên đã đăng ký
+    SELECT @SoLuongLop = COUNT(*)
+    FROM DangKy
+    WHERE MaSinhVien = @MaSinhVien;
+
+    RETURN @SoLuongLop;
+END;
+
 
 
 GO

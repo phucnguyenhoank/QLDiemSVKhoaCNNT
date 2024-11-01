@@ -41,7 +41,7 @@
             dgvTKBCuaSV.Location = new Point(52, 153);
             dgvTKBCuaSV.Name = "dgvTKBCuaSV";
             dgvTKBCuaSV.RowHeadersWidth = 51;
-            dgvTKBCuaSV.Size = new Size(717, 253);
+            dgvTKBCuaSV.Size = new Size(730, 253);
             dgvTKBCuaSV.TabIndex = 11;
             // 
             // label2
@@ -76,7 +76,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(821, 450);
+            ClientSize = new Size(843, 450);
             Controls.Add(dgvTKBCuaSV);
             Controls.Add(label2);
             Controls.Add(label1);

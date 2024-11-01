@@ -25,7 +25,7 @@ namespace QLDiemSVKhoaCNNT
             {
                 // Gọi phương thức lấy danh sách sinh viên trong lớp
                 ProcedureDAL procedureDAL = new ProcedureDAL();
-                dgvTKBCuaSV.DataSource = procedureDAL.xemThoiKhoaBieu1SV(maSV);
+                dgvTKBCuaSV.DataSource = procedureDAL.XemThoiKhoaBieu1SV(maSV);
                 dgvTKBCuaSV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
         }

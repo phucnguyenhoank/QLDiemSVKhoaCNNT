@@ -159,7 +159,7 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
-        public DataTable xemThoiKhoaBieu1SV(int maSV)
+        public DataTable XemThoiKhoaBieu1SV(int maSV)
         {
             try
             {

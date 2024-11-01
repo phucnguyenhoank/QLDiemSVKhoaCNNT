@@ -264,5 +264,23 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void dgvSinhVien_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
+            if (e.RowIndex >= 0)
+            {
+                // Lấy dòng hiện tại
+                DataGridViewRow row = dgvSinhVien.Rows[e.RowIndex];
+
+                // Gán giá trị từ các ô của dòng vào các TextBox
+                txtMaSinhVien.Text = row.Cells["MaSinhVien"].Value.ToString();
+                txtHoVaTen.Text = row.Cells["HoVaTen"].Value.ToString();
+                txtEmail.Text = row.Cells["Email"].Value.ToString();
+                txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
+                txtQueQuan.Text = row.Cells["QueQuan"].Value.ToString();
+
+            }
+        }
     }
 }
