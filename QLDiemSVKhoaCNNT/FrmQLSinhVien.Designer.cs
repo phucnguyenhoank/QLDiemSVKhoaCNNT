@@ -107,13 +107,11 @@
             dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSinhVien.Location = new Point(308, 100);
             dgvSinhVien.Name = "dgvSinhVien";
-            dgvSinhVien.ReadOnly = true;
             dgvSinhVien.RowHeadersVisible = false;
             dgvSinhVien.RowHeadersWidth = 51;
             dgvSinhVien.Size = new Size(656, 392);
             dgvSinhVien.TabIndex = 28;
-            dgvSinhVien.CellClick += dataGridView1_CellContentClick;
-            dgvSinhVien.CellContentClick += dgvSinhVien_CellContentClick;
+            dgvSinhVien.CellClick += dgvSinhVien_CellClick;
             // 
             // txtSoDienThoai
             // 
@@ -247,9 +245,9 @@
             // 
             // btnXemTKB
             // 
-            btnXemTKB.Location = new Point(987, 245);
+            btnXemTKB.Location = new Point(987, 237);
             btnXemTKB.Name = "btnXemTKB";
-            btnXemTKB.Size = new Size(221, 29);
+            btnXemTKB.Size = new Size(178, 29);
             btnXemTKB.TabIndex = 42;
             btnXemTKB.Text = "Xem thời khóa biểu";
             btnXemTKB.UseVisualStyleBackColor = true;
@@ -258,7 +256,7 @@
             // lblSoLuongLop1SinhVienDangKy
             // 
             lblSoLuongLop1SinhVienDangKy.AutoSize = true;
-            lblSoLuongLop1SinhVienDangKy.Location = new Point(71, 356);
+            lblSoLuongLop1SinhVienDangKy.Location = new Point(146, 327);
             lblSoLuongLop1SinhVienDangKy.Name = "lblSoLuongLop1SinhVienDangKy";
             lblSoLuongLop1SinhVienDangKy.Size = new Size(123, 20);
             lblSoLuongLop1SinhVienDangKy.TabIndex = 43;

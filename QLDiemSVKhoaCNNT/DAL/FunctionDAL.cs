@@ -1,4 +1,5 @@
 ﻿using QLDiemSVKhoaCNNT.DBConnection;
+using QLDiemSVKhoaCNNT.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,6 +7,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
+using System.Windows.Forms;
 
 namespace QLDiemSVKhoaCNNT.DAL
 {
@@ -497,5 +500,32 @@ namespace QLDiemSVKhoaCNNT.DAL
         }
 
 
+        public int SoLuongLopSVDangKy(int maSinhVien)
+        {
+            try
+            {
+                int soLuongLop = 0;
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand("SELECT dbo.fn_DemSoLuongLopDangKy(@MaSinhVien)", connection))
+                    {
+                        cmd.Parameters.AddWithValue("@MaSinhVien", maSinhVien);
+                        soLuongLop = (int)cmd.ExecuteScalar();
+                    }
+                }
+                return soLuongLop;
+            }
+            catch (SqlException ex)
+            {
+                // Xử lý lỗi SQL
+                throw new Exception($"SQL Error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Xử lý các lỗi khác
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
     }
 }
