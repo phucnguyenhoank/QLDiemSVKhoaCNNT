@@ -78,6 +78,8 @@ namespace QLDiemSVKhoaCNNT
                 txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
                 txtQueQuan.Text = row.Cells["QueQuan"].Value.ToString();
 
+                FunctionDAL functionDAL = new FunctionDAL();
+                txtSoLuongLop.Text = "Đã đăng ký " + functionDAL.SoLuongLopSVDangKy(Convert.ToInt32(row.Cells["MaSinhVien"].Value.ToString())) + " lớp";
             }
         }
 
@@ -87,6 +89,7 @@ namespace QLDiemSVKhoaCNNT
             {
                 ViewDAL viewDAL = new ViewDAL();
                 dgvSinhVien.DataSource = viewDAL.GetViewSinhVien();
+                
             }
             catch (SqlException sqlEx)
             {

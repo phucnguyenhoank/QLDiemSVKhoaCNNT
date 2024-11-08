@@ -228,7 +228,7 @@ namespace QLDiemSVKhoaCNNT
                 int MaMonHoc = int.Parse(cbxMaMonHoc.Text);
 
                 LopHocDAL lopHocDAL = new LopHocDAL();
-                lopHocDAL.CapNhatGiangVienVaoLop(MaGiangVien, MaLopHoc);
+                lopHocDAL.SuaLopHoc(MaLopHoc, Thu, TietBatDau, TietKetThu, MaPhongHoc, MaGiangVien, MaMonHoc);
 
                 MessageBox.Show($"Sua lop hoc {MaLopHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
