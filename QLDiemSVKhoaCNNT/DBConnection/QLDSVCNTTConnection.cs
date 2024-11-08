@@ -11,7 +11,11 @@ namespace QLDiemSVKhoaCNNT.DBConnection
 {
     internal class QLDSVCNTTConnection
     {
-        public const string connectionString = @"Data Source=xichxo;Initial Catalog=QLDiemSVKhoaCNTT;Integrated Security=True;TrustServerCertificate=True";
+        public static string connectionString = "";
+        public QLDSVCNTTConnection(string username="sa", string password="1234")
+        {
+            connectionString = $@"Data Source=xichxo;Initial Catalog=QLDiemSVKhoaCNTT;User ID={username};Password={password};TrustServerCertificate=True";
+        }
 
         /// <summary>
         /// Test the database connection.

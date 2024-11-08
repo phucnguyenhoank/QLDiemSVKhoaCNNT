@@ -135,8 +135,6 @@ namespace QLDiemSVKhoaCNNT
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-
         }
 
         private void btnThemLopHoc_Click(object sender, EventArgs e)
