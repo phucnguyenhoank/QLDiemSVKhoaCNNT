@@ -1,6 +1,6 @@
 ﻿namespace QLDiemSVKhoaCNNT
 {
-    partial class QLDiem
+    partial class FrmXemSinhVien
     {
         /// <summary>
         /// Required designer variable.
@@ -28,16 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            SuspendLayout();
-            // 
-            // QLDiem
-            // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1114, 636);
-            Name = "QLDiem";
-            Text = "QLDiem";
-            ResumeLayout(false);
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "FrmXemSinhVien";
         }
 
         #endregion

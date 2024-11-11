@@ -93,11 +93,11 @@ namespace QLDiemSVKhoaCNNT
             }
             catch (SqlException sqlEx)
             {
-                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnXemHocLuc_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnCapNhatDiem_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Lỗi khi cập nhật điểmbtnXemHocLuc_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Lỗi khi cập nhật điểm btnCapNhatDiem_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

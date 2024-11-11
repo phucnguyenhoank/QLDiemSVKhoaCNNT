@@ -32,8 +32,6 @@ số lớp học giảng viên đang phụ trách (bị động/xem cá nhân),
 lấy danh sách sinh viên với điểm trong một lớp,
 
 
-
-
 Admin:
 danh sách giảng viên,
 thêm giảng viên
@@ -47,4 +45,3 @@ sửa thông tin sinh viên,
 sửa thông tin giảng viên,
 sửa thông tin môn học,
 sửa lớp học,
-

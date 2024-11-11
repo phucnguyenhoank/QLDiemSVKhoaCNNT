@@ -12,8 +12,6 @@ namespace QLDiemSVKhoaCNNT.DAL
 {
     internal class LopHocDAL
     {
-        
-
         /// <summary>
         /// Thêm một lớp học mới vào cơ sở dữ liệu thông qua stored procedure "proc_ThemLopHoc".
         /// </summary>
@@ -190,33 +188,6 @@ namespace QLDiemSVKhoaCNNT.DAL
                 throw new Exception($"Error: {ex.Message}"); // Ném lại ngoại lệ khác
             }
         }
-        public int CapNhatGiangVienVaoLop(int maGiangVien, int maLopHoc)
-        {
-            try
-            {
-                string connectionString = QLDSVCNTTConnection.connectionString;
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand("proc_CapNhatGiangVienVaoLop", connection))
-                    {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@MaGiangVien", maGiangVien);
-                        command.Parameters.AddWithValue("@MaLopHoc", maLopHoc);
-
-                        // Thực hiện thủ tục và trả về số lượng bản ghi bị ảnh hưởng
-                        return command.ExecuteNonQuery();
-                    }
-                }
-            }
-            catch (SqlException)
-            {
-                throw;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error: {ex.Message}");
-            }
-        }
+        
     }
 }

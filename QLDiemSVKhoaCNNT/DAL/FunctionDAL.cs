@@ -1,4 +1,5 @@
 ﻿using QLDiemSVKhoaCNNT.DBConnection;
+using QLDiemSVKhoaCNNT.DTO;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -6,6 +7,8 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.ComponentModel.Design.ObjectSelectorEditor;
+using System.Windows.Forms;
 
 namespace QLDiemSVKhoaCNNT.DAL
 {
@@ -108,6 +111,17 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+        /// <summary>
+        /// Hàm lấy số tín chỉ mà sinh viên đã hoàn thành dựa trên mã sinh viên.
+        /// </summary>
+        /// <param name="maSV">Mã sinh viên cần tính số tín chỉ hoàn thành.</param>
+        /// <returns>Trả về tổng số tín chỉ đã hoàn thành. Nếu có lỗi xảy ra, trả về 0.</returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi không xác định xảy ra.
+        /// </exception>
         public int SoTinChiHoanThanh(int maSV)
         {
             try
@@ -125,13 +139,13 @@ namespace QLDiemSVKhoaCNNT.DAL
                 }
                 return soTinChi;
             }
-            catch (SqlException sqlEx)
+            catch (SqlException)
             {
-                throw new Exception(sqlEx.Message);
+                throw;
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                throw new Exception($"Error: {ex.Message}");
             }
         }
 
@@ -260,7 +274,6 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
-
         /// <summary>
         /// Lấy danh sách sinh viên trong lớp học có mã lớp học được chỉ định.
         /// </summary>
@@ -387,7 +400,6 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
-
         /// <summary>
         /// Lấy điểm trung bình của sinh viên dựa trên mã sinh viên.
         /// </summary>
@@ -401,7 +413,6 @@ namespace QLDiemSVKhoaCNNT.DAL
         /// <exception cref="Exception">
         /// Ném ra khi có lỗi khác không xác định xảy ra.
         /// </exception>
-   
         public decimal LayDiemTrungBinhSinhVien(int maSinhVien)
         {
             try
@@ -496,6 +507,17 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+        /// <summary>
+        /// Hàm đếm số lượng lớp mà sinh viên đã đăng ký.
+        /// </summary>
+        /// <param name="maSinhVien">Mã sinh viên cần đếm số lượng lớp đăng ký.</param>
+        /// <returns>Trả về số lượng lớp mà sinh viên đã đăng ký. Nếu có lỗi xảy ra, trả về 0.</returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
         public int SoLuongLopSVDangKy(int maSinhVien)
         {
             try
@@ -523,6 +545,6 @@ namespace QLDiemSVKhoaCNNT.DAL
                 throw new Exception($"Error: {ex.Message}");
             }
         }
-
+    
     }
 }

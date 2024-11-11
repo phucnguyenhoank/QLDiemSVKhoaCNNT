@@ -65,5 +65,16 @@ namespace QLDiemSVKhoaCNNT
             lblTitle.Text = "QUẢN LÝ LỚP HỌC";
         }
 
+        private void btnXemLop_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FrmXemLop());
+            lblTitle.Text = "TRANG XEM LỚP HỌC CHO SINH VIÊN";
+        }
+
+        private void btnXemSinhVien_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new FrmXemSinhVien());
+            lblTitle.Text = "TRANG XEM SINH VIÊN CHO GIẢNG VIÊN";
+        }
     }
 }

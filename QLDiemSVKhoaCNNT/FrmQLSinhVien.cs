@@ -63,7 +63,7 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
             if (e.RowIndex >= 0)
@@ -79,7 +79,8 @@ namespace QLDiemSVKhoaCNNT
                 txtQueQuan.Text = row.Cells["QueQuan"].Value.ToString();
 
                 FunctionDAL functionDAL = new FunctionDAL();
-                txtSoLuongLop.Text = "Đã đăng ký " + functionDAL.SoLuongLopSVDangKy(Convert.ToInt32(row.Cells["MaSinhVien"].Value.ToString())) + " lớp";
+                lblSoLuongLop1SinhVienDangKy.Text = "Đã đăng ký " + functionDAL.SoLuongLopSVDangKy(Convert.ToInt32(row.Cells["MaSinhVien"].Value.ToString())) + " lớp";
+
             }
         }
 
@@ -89,7 +90,6 @@ namespace QLDiemSVKhoaCNNT
             {
                 ViewDAL viewDAL = new ViewDAL();
                 dgvSinhVien.DataSource = viewDAL.GetViewSinhVien();
-                
             }
             catch (SqlException sqlEx)
             {
@@ -267,5 +267,6 @@ namespace QLDiemSVKhoaCNNT
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        
     }
 }

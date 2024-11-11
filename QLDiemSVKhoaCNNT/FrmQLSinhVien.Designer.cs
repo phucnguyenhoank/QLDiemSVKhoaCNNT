@@ -50,7 +50,7 @@
             btnTongKetDiemSinhVien = new Button();
             btnCapNhatDiem = new Button();
             btnXemTKB = new Button();
-            txtSoLuongLop = new Label();
+            lblSoLuongLop1SinhVienDangKy = new Label();
             ((System.ComponentModel.ISupportInitialize)dgvSinhVien).BeginInit();
             SuspendLayout();
             // 
@@ -107,12 +107,11 @@
             dgvSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSinhVien.Location = new Point(308, 100);
             dgvSinhVien.Name = "dgvSinhVien";
-            dgvSinhVien.ReadOnly = true;
             dgvSinhVien.RowHeadersVisible = false;
             dgvSinhVien.RowHeadersWidth = 51;
             dgvSinhVien.Size = new Size(656, 392);
             dgvSinhVien.TabIndex = 28;
-            dgvSinhVien.CellClick += dataGridView1_CellContentClick;
+            dgvSinhVien.CellClick += dgvSinhVien_CellClick;
             // 
             // txtSoDienThoai
             // 
@@ -246,29 +245,29 @@
             // 
             // btnXemTKB
             // 
-            btnXemTKB.Location = new Point(987, 245);
+            btnXemTKB.Location = new Point(987, 237);
             btnXemTKB.Name = "btnXemTKB";
-            btnXemTKB.Size = new Size(221, 29);
+            btnXemTKB.Size = new Size(178, 29);
             btnXemTKB.TabIndex = 42;
             btnXemTKB.Text = "Xem thời khóa biểu";
             btnXemTKB.UseVisualStyleBackColor = true;
             btnXemTKB.Click += btnXemTKB_Click;
             // 
-            // txtSoLuongLop
+            // lblSoLuongLop1SinhVienDangKy
             // 
-            txtSoLuongLop.AutoSize = true;
-            txtSoLuongLop.Location = new Point(44, 371);
-            txtSoLuongLop.Name = "txtSoLuongLop";
-            txtSoLuongLop.Size = new Size(126, 20);
-            txtSoLuongLop.TabIndex = 43;
-            txtSoLuongLop.Text = "Đã đăng ký .... lớp";
+            lblSoLuongLop1SinhVienDangKy.AutoSize = true;
+            lblSoLuongLop1SinhVienDangKy.Location = new Point(146, 327);
+            lblSoLuongLop1SinhVienDangKy.Name = "lblSoLuongLop1SinhVienDangKy";
+            lblSoLuongLop1SinhVienDangKy.Size = new Size(123, 20);
+            lblSoLuongLop1SinhVienDangKy.TabIndex = 43;
+            lblSoLuongLop1SinhVienDangKy.Text = "Đã đăng ký ... lớp";
             // 
             // FrmQLSinhVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1349, 617);
-            Controls.Add(txtSoLuongLop);
+            Controls.Add(lblSoLuongLop1SinhVienDangKy);
             Controls.Add(btnXemTKB);
             Controls.Add(btnCapNhatDiem);
             Controls.Add(btnTongKetDiemSinhVien);
@@ -323,6 +322,6 @@
         private Button btnTongKetDiemSinhVien;
         private Button btnCapNhatDiem;
         private Button btnXemTKB;
-        private Label txtSoLuongLop;
+        private Label lblSoLuongLop1SinhVienDangKy;
     }
 }

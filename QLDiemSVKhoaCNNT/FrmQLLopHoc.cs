@@ -135,8 +135,6 @@ namespace QLDiemSVKhoaCNNT
             {
                 MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-
         }
 
         private void btnThemLopHoc_Click(object sender, EventArgs e)
@@ -219,18 +217,18 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-                int MaLopHoc = int.Parse(textBox2.Text); ;
-                byte Thu = byte.Parse(cbxThu.Text);
-                byte TietBatDau = byte.Parse(cbxTietBatDau.Text);
-                byte TietKetThu = byte.Parse(cbxTietKetThuc.Text);
-                int MaPhongHoc = int.Parse(cbxMaPhongHoc.Text);
-                int MaGiangVien = int.Parse(cbxMaGiangVien.Text);
-                int MaMonHoc = int.Parse(cbxMaMonHoc.Text);
+                int maLopHoc = int.Parse(textBox2.Text); ;
+                byte thu = byte.Parse(cbxThu.Text);
+                byte tietBatDau = byte.Parse(cbxTietBatDau.Text);
+                byte tietKetThuc = byte.Parse(cbxTietKetThuc.Text);
+                int maPhongHoc = int.Parse(cbxMaPhongHoc.Text);
+                int maGiangVien = int.Parse(cbxMaGiangVien.Text);
+                int maMonHoc = int.Parse(cbxMaMonHoc.Text);
 
                 LopHocDAL lopHocDAL = new LopHocDAL();
-                lopHocDAL.SuaLopHoc(MaLopHoc, Thu, TietBatDau, TietKetThu, MaPhongHoc, MaGiangVien, MaMonHoc);
+                lopHocDAL.SuaLopHoc(maLopHoc, thu, tietBatDau, tietKetThuc, maPhongHoc, maGiangVien, maMonHoc);
 
-                MessageBox.Show($"Sua lop hoc {MaLopHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show($"Sua lop hoc {maLopHoc} thanh cong", "Thanh cong", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (SqlException sqlEx)
             {

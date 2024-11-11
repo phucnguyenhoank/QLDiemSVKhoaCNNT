@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace QLDiemSVKhoaCNNT
 {
-    public partial class QLDiem : Form
+    public partial class FrmXemSinhVien : Form
     {
-        public QLDiem()
+        public FrmXemSinhVien()
         {
             InitializeComponent();
         }
