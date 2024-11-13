@@ -88,7 +88,7 @@
             dgvdanhsachdiemsv.Name = "dgvdanhsachdiemsv";
             dgvdanhsachdiemsv.ReadOnly = true;
             dgvdanhsachdiemsv.RowHeadersWidth = 51;
-            dgvdanhsachdiemsv.Size = new Size(683, 388);
+            dgvdanhsachdiemsv.Size = new Size(814, 388);
             dgvdanhsachdiemsv.TabIndex = 6;
             // 
             // panel1
@@ -122,18 +122,18 @@
             label2.TabIndex = 0;
             label2.Text = "Điểm Trung Bình Tích Lũy: ";
             // 
-            // Form_diem1sv
+            // FrmDiemSinhVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ControlDarkDark;
-            ClientSize = new Size(1034, 450);
+            ClientSize = new Size(1183, 450);
             Controls.Add(panel1);
             Controls.Add(dgvdanhsachdiemsv);
             Controls.Add(buttonshow);
             Controls.Add(labelmssv);
             Controls.Add(textBoxmssv);
-            Name = "Form_diem1sv";
+            Name = "FrmDiemSinhVien";
             Text = "Form_diem1sv";
             Load += Form_diem1sv_Load;
             ((System.ComponentModel.ISupportInitialize)dgvdanhsachdiemsv).EndInit();

@@ -70,13 +70,13 @@
             dgvSinhVienCuaLop.Location = new Point(46, 137);
             dgvSinhVienCuaLop.Name = "dgvSinhVienCuaLop";
             dgvSinhVienCuaLop.RowHeadersWidth = 51;
-            dgvSinhVienCuaLop.Size = new Size(717, 253);
+            dgvSinhVienCuaLop.Size = new Size(912, 253);
             dgvSinhVienCuaLop.TabIndex = 3;
             dgvSinhVienCuaLop.CellValueChanged += dgvSinhVienCuaLop_CellValueChanged;
             // 
             // btnCapNhatDiem
             // 
-            btnCapNhatDiem.Location = new Point(632, 102);
+            btnCapNhatDiem.Location = new Point(827, 102);
             btnCapNhatDiem.Name = "btnCapNhatDiem";
             btnCapNhatDiem.Size = new Size(131, 29);
             btnCapNhatDiem.TabIndex = 23;
@@ -88,7 +88,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1002, 450);
             Controls.Add(btnCapNhatDiem);
             Controls.Add(dgvSinhVienCuaLop);
             Controls.Add(label2);

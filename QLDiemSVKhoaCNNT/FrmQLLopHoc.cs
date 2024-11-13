@@ -156,7 +156,7 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-                int MaLopHoc = int.Parse(textBox2.Text); ;
+                int MaLopHoc = int.Parse(textBox2.Text);
                 byte Thu = byte.Parse(cbxThu.Text);
                 byte TietBatDau = byte.Parse(cbxTietBatDau.Text);
                 byte TietKetThu = byte.Parse(cbxTietKetThuc.Text);
@@ -331,5 +331,23 @@ namespace QLDiemSVKhoaCNNT
             }
         }
 
+        private void btnChuyenLop_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FrmChuyenLop frmChuyenLop = new FrmChuyenLop();
+                frmChuyenLop.ShowDialog();
+            }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi từ SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

@@ -212,5 +212,53 @@ namespace QLDiemSVKhoaCNNT.DAL
             }
         }
 
+        /// <summary>
+        /// Gọi thủ tục proc_GiangVienDayMonHocVoiSoSVDangKyCaoNhat để lấy danh sách giảng viên dạy môn học với số lượng sinh viên đăng ký cao nhất.
+        /// </summary>
+        /// <returns>
+        /// Danh sách giảng viên dạy môn học có số lượng sinh viên đăng ký cao nhất, bao gồm:
+        /// <br>- MaGiangVien: Mã giảng viên.</br>
+        /// <br>- TenGiangVien: Tên giảng viên.</br>
+        /// <br>- TenMonHoc: Tên môn học giảng viên dạy.</br>
+        /// <br>- SoLuongSinhVien: Số lượng sinh viên đăng ký môn học.</br>
+        /// </returns>
+        /// <exception cref="SqlException">
+        /// Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.
+        /// </exception>
+        /// <exception cref="Exception">
+        /// Ném ra khi có lỗi khác không xác định xảy ra.
+        /// </exception>
+        public DataTable GetGiangVienDayMonHocVoiSoSVDangKyCaoNhat()
+        {
+            try
+            {
+                DataTable result = new DataTable();
+
+                using (SqlConnection connection = new SqlConnection(QLDSVCNTTConnection.connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand cmd = new SqlCommand("proc_GiangVienDayMonHocVoiSoSVDangKyCaoNhat", connection))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
+                        {
+                            adapter.Fill(result);
+                        }
+                    }
+                }
+
+                return result;
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error: {ex.Message}");
+            }
+        }
+
     }
 }

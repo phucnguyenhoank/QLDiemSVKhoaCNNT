@@ -13,10 +13,12 @@ namespace QLDiemSVKhoaCNNT
     public partial class FrmControl : Form
     {
         private Form currentFormChild;
+
         public FrmControl()
         {
             InitializeComponent();
         }
+
         private void OpenChildForm(Form childForm)
         {
             if (currentFormChild != null)
@@ -35,10 +37,8 @@ namespace QLDiemSVKhoaCNNT
 
         private void pbxUTELogo_Click(object sender, EventArgs e)
         {
-            if (currentFormChild != null)
-            {
-                currentFormChild.Close();
-            }
+            OpenChildForm(new FrmHome());
+            lblTitle.Text = "WELCOME";
         }
 
         private void btnSinhVien_Click(object sender, EventArgs e)
@@ -65,5 +65,9 @@ namespace QLDiemSVKhoaCNNT
             lblTitle.Text = "QUẢN LÝ LỚP HỌC";
         }
 
+        private void FrmControl_Load(object sender, EventArgs e)
+        {
+            pbxUTELogo_Click(sender, e);
+        }
     }
 }

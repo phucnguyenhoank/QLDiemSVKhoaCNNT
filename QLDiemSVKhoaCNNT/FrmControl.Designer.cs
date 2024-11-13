@@ -165,6 +165,7 @@
             Name = "FrmControl";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Trang chính";
+            Load += FrmControl_Load;
             pnlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbxUTELogo).EndInit();
             pnlTop.ResumeLayout(false);
