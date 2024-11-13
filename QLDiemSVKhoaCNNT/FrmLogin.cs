@@ -15,8 +15,8 @@ namespace QLDiemSVKhoaCNNT
         public FrmLogin()
         {
             InitializeComponent();
-            txtUsername.Text = "sa";
-            txtPassword.Text = "1234";
+            txtUsername.Text = "mainad1";
+            txtPassword.Text = "#kcmtl5cM";
         }
 
         public string getUserName()

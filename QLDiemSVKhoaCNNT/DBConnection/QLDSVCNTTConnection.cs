@@ -12,9 +12,18 @@ namespace QLDiemSVKhoaCNNT.DBConnection
     internal class QLDSVCNTTConnection
     {
         public static string connectionString = "";
-        public QLDSVCNTTConnection(string username="sa", string password="1234")
+        public QLDSVCNTTConnection(string username="mainad1", string password="#kcmtl5cM")
         {
-            connectionString = $@"Data Source=LAPTOP-EC6KMGRU;Initial Catalog=QLDiemSVKhoaCNTT;User ID={username};Password={password};TrustServerCertificate=True";
+            //connectionString = $@"Data Source=xichxo;Initial Catalog=QLDiemSVKhoaCNTT;User ID={username};Password={password};TrustServerCertificate=True";
+            connectionString = "Server=tcp:loisever.database.windows.net,1433;" +
+                          "Initial Catalog=QLDiemSVKhoaCNTT;" +
+                          "Persist Security Info=False;" +
+                          $"User ID={username};" +
+                          $"Password={password};" +
+                          "MultipleActiveResultSets=False;" +
+                          "Encrypt=True;" +
+                          "TrustServerCertificate=False;" +
+                          "Connection Timeout=30;";
         }
 
         /// <summary>
