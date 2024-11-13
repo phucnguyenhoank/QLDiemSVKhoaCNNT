@@ -11,6 +11,15 @@ namespace QLDiemSVKhoaCNNT.DAL
 {
     internal class TransactionDAL
     {
+        /// <summary>
+        /// Chuyển sinh viên sang lớp khác bằng cách gọi thủ tục proc_ChuyenSinhVienSangLopKhac.
+        /// </summary>
+        /// <param name="maSinhVien">Mã sinh viên cần chuyển lớp.</param>
+        /// <param name="maLopHocCu">Mã lớp học hiện tại của sinh viên.</param>
+        /// <param name="maLopHocMoi">Mã lớp học mới mà sinh viên sẽ được chuyển đến.</param>
+        /// <returns>Số dòng bị ảnh hưởng trong cơ sở dữ liệu khi thực hiện chuyển lớp.</returns>
+        /// <exception cref="SqlException">Ném ra khi có lỗi xảy ra trong quá trình kết nối hoặc truy vấn cơ sở dữ liệu.</exception>
+        /// <exception cref="Exception">Ném ra khi có lỗi không xác định khác.</exception>
         public int ChuyenSinhVienSangLopKhac(int maSinhVien, int maLopHocCu, int maLopHocMoi)
         {
             try

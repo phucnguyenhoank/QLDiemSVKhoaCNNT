@@ -1506,16 +1506,7 @@ BEGIN
 
         UPDATE DangKy
         SET MaLopHoc = @MaLopHocMoi
-        WHERE MaSinhVien = @MaSinhVien AND MaLopHoc = @MaLopHocCu
-        /*
-        -- Xóa đăng ký cũ của sinh viên
-        DELETE FROM DangKy
         WHERE MaSinhVien = @MaSinhVien AND MaLopHoc = @MaLopHocCu;
-
-        -- Thêm đăng ký mới vào lớp đích
-        INSERT INTO DangKy (MaSinhVien, MaLopHoc)
-        VALUES (@MaSinhVien, @MaLopHocMoi);
-        */
 
         -- Commit transaction nếu không có lỗi
 
