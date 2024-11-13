@@ -76,13 +76,6 @@ CREATE TABLE DangKy (
     CONSTRAINT FK_DangKy_LopHoc FOREIGN KEY (MaLopHoc) REFERENCES LopHoc(MaLopHoc) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE Account (
-    AccUsername VARCHAR(50), 
-    AccPassword VARCHAR(50) NOT NULL, 
-    AccRole VARCHAR(50) NOT NULL,
-    CONSTRAINT PK_Account PRIMARY KEY (AccUsername)
-);
-
 -- TRIGGER: 4 LOẠI
 /*
 trg_ThemSinhVien, trg_ThemGiangVien, trg_ThemMonHoc, trg_TruocKhiSuaDangKy.
