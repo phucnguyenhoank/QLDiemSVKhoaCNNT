@@ -73,22 +73,37 @@ namespace QLDiemSVKhoaCNNT
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
-            if (e.RowIndex >= 0)
+            try
             {
-                // Lấy dòng hiện tại
-                DataGridViewRow row = dgvLopHoc.Rows[e.RowIndex];
 
-                // Gán giá trị từ các ô của dòng vào các TextBox
-                textBox2.Text = row.Cells["MaLopHoc"].Value.ToString();
-                cbxThu.Text = row.Cells["Thu"].Value.ToString();
-                cbxTietBatDau.Text = row.Cells["TietBatDau"].Value.ToString();
-                cbxTietKetThuc.Text = row.Cells["TietKetThuc"].Value.ToString();
-                cbxMaPhongHoc.Text = row.Cells["MaPhongHoc"].Value.ToString();
-                cbxMaGiangVien.Text = row.Cells["MaGiangVien"].Value.ToString();
-                cbxMaMonHoc.Text = row.Cells["MaMonHoc"].Value.ToString();
+                // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
+                if (e.RowIndex >= 0)
+                {
+                    // Lấy dòng hiện tại
+                    DataGridViewRow row = dgvLopHoc.Rows[e.RowIndex];
 
+                    // Gán giá trị từ các ô của dòng vào các TextBox
+                    textBox2.Text = row.Cells["MaLopHoc"].Value.ToString();
+                    cbxThu.Text = row.Cells["Thu"].Value.ToString();
+                    cbxTietBatDau.Text = row.Cells["TietBatDau"].Value.ToString();
+                    cbxTietKetThuc.Text = row.Cells["TietKetThuc"].Value.ToString();
+                    cbxMaPhongHoc.Text = row.Cells["MaPhongHoc"].Value.ToString();
+                    cbxMaGiangVien.Text = row.Cells["MaGiangVien"].Value.ToString();
+                    cbxMaMonHoc.Text = row.Cells["MaMonHoc"].Value.ToString();
+
+                }
             }
+            catch (SqlException sqlEx)
+            {
+                // Bắt lỗi SQL Server nếu có
+                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server btnTimKiem_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                // Bắt lỗi tổng quát
+                MessageBox.Show(ex.Message, "Lỗi btnTimKiem_Click", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void FrmQLLopHoc_Load(object sender, EventArgs e)

@@ -110,17 +110,28 @@ namespace QLDiemSVKhoaCNNT
 
         private void dgvGiangVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
-            if (e.RowIndex >= 0)
+            try
             {
-                // Lấy dòng hiện tại
-                DataGridViewRow row = dgvGiangVien.Rows[e.RowIndex];
+                // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
+                if (e.RowIndex >= 0)
+                {
+                    // Lấy dòng hiện tại
+                    DataGridViewRow row = dgvGiangVien.Rows[e.RowIndex];
 
-                // Gán giá trị từ các ô của dòng vào các TextBox
-                txtMaGiangVien.Text = row.Cells["MaGiangVien"].Value.ToString();
-                txtHoVaTen.Text = row.Cells["HoVaTen"].Value.ToString();
-                txtEmail.Text = row.Cells["Email"].Value.ToString();
-                txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
+                    // Gán giá trị từ các ô của dòng vào các TextBox
+                    txtMaGiangVien.Text = row.Cells["MaGiangVien"].Value.ToString();
+                    txtHoVaTen.Text = row.Cells["HoVaTen"].Value.ToString();
+                    txtEmail.Text = row.Cells["Email"].Value.ToString();
+                    txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi sql", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
