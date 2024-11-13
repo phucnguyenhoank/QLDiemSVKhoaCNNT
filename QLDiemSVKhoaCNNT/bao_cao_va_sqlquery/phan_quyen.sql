@@ -1,4 +1,4 @@
-use master;
+﻿use master;
 
 CREATE LOGIN adsv1 WITH PASSWORD = '1234';
 CREATE LOGIN adgv1 WITH PASSWORD = '1234';
@@ -6,6 +6,7 @@ CREATE LOGIN admh1 WITH PASSWORD = '1234';
 CREATE LOGIN adlh1 WITH PASSWORD = '1234';
 CREATE LOGIN mainad1 WITH PASSWORD = '1234';
 
+-- Tạo các user trong cơ sở dữ liệu QLDiemSVKhoaCNTT
 use QLDiemSVKhoaCNTT;
 
 CREATE USER adsv1 FOR LOGIN adsv1;
@@ -14,13 +15,14 @@ CREATE USER admh1 FOR LOGIN admh1;
 CREATE USER adlh1 FOR LOGIN adlh1;
 CREATE USER mainad1 FOR LOGIN mainad1;
 
+-- Tạo Role
 CREATE ROLE AdminSVRole;
 CREATE ROLE AdminGVRole;
 CREATE ROLE AdminMHRole;
 CREATE ROLE AdminLHRole;
 CREATE ROLE MainAdminRole;
 
--- Th�m User v�o Role
+-- Thêm User vào Role
 ALTER ROLE AdminSVRole ADD MEMBER adsv1;
 ALTER ROLE AdminGVRole ADD MEMBER adgv1;
 ALTER ROLE AdminMHRole ADD MEMBER admh1;
@@ -79,8 +81,23 @@ GRANT EXECUTE ON dbo.fn_TinhPhanTramQuaMon TO AdminLHRole;
 ALTER ROLE db_owner ADD MEMBER MainAdminRole;
 
 
+-- cấp quyền thực thi hàm hệ thống msdb.dbo.sp_send_dbmail
+USE msdb;       -- dùng cơ sở dữ liệu chứa hàm hệ thống
 
+-- tạo user cho cơ sở dữ liệu
+CREATE USER adsv1 FOR LOGIN adsv1;
+CREATE USER mainad1 FOR LOGIN mainad1;
 
+-- tạo role tương ứng cho các user
+CREATE ROLE AdminSVRole;
+CREATE ROLE MainAdminRole;
 
+-- cấp quyền cho các role
+GRANT EXECUTE ON dbo.sp_send_dbmail TO AdminSVRole;
+GRANT EXECUTE ON dbo.sp_send_dbmail TO MainAdminRole;
+
+-- thêm user vào các role
+ALTER ROLE AdminSVRole ADD MEMBER adsv1;
+ALTER ROLE MainAdminRole ADD MEMBER mainad1;
 
 

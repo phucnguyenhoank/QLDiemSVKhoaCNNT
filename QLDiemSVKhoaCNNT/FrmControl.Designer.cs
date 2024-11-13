@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             pnlLeft = new Panel();
-            btnXemLop = new Button();
             btnLopHoc = new Button();
             btnMonHoc = new Button();
             btnGiangVien = new Button();
@@ -38,7 +37,6 @@
             pnlTop = new Panel();
             lblTitle = new Label();
             pnlBody = new Panel();
-            btnXemSinhVien = new Button();
             pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbxUTELogo).BeginInit();
             pnlTop.SuspendLayout();
@@ -47,8 +45,6 @@
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.Navy;
-            pnlLeft.Controls.Add(btnXemSinhVien);
-            pnlLeft.Controls.Add(btnXemLop);
             pnlLeft.Controls.Add(btnLopHoc);
             pnlLeft.Controls.Add(btnMonHoc);
             pnlLeft.Controls.Add(btnGiangVien);
@@ -59,20 +55,6 @@
             pnlLeft.Name = "pnlLeft";
             pnlLeft.Size = new Size(144, 704);
             pnlLeft.TabIndex = 0;
-            // 
-            // btnXemLop
-            // 
-            btnXemLop.BackColor = Color.FromArgb(0, 0, 64);
-            btnXemLop.Dock = DockStyle.Top;
-            btnXemLop.FlatStyle = FlatStyle.Flat;
-            btnXemLop.ForeColor = Color.White;
-            btnXemLop.Location = new Point(0, 371);
-            btnXemLop.Name = "btnXemLop";
-            btnXemLop.Size = new Size(144, 52);
-            btnXemLop.TabIndex = 5;
-            btnXemLop.Text = "Xem lớp";
-            btnXemLop.UseVisualStyleBackColor = false;
-            btnXemLop.Click += btnXemLop_Click;
             // 
             // btnLopHoc
             // 
@@ -172,20 +154,6 @@
             pnlBody.Size = new Size(1334, 620);
             pnlBody.TabIndex = 2;
             // 
-            // btnXemSinhVien
-            // 
-            btnXemSinhVien.BackColor = Color.FromArgb(0, 0, 64);
-            btnXemSinhVien.Dock = DockStyle.Top;
-            btnXemSinhVien.FlatStyle = FlatStyle.Flat;
-            btnXemSinhVien.ForeColor = Color.White;
-            btnXemSinhVien.Location = new Point(0, 423);
-            btnXemSinhVien.Name = "btnXemSinhVien";
-            btnXemSinhVien.Size = new Size(144, 52);
-            btnXemSinhVien.TabIndex = 6;
-            btnXemSinhVien.Text = "Xem sinh viên";
-            btnXemSinhVien.UseVisualStyleBackColor = false;
-            btnXemSinhVien.Click += btnXemSinhVien_Click;
-            // 
             // FrmControl
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -197,6 +165,7 @@
             Name = "FrmControl";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Trang chính";
+            Load += FrmControl_Load;
             pnlLeft.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pbxUTELogo).EndInit();
             pnlTop.ResumeLayout(false);
@@ -215,7 +184,5 @@
         private Button btnMonHoc;
         private Button btnGiangVien;
         private Label lblTitle;
-        private Button btnXemLop;
-        private Button btnXemSinhVien;
     }
 }

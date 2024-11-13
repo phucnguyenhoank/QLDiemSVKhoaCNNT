@@ -41,7 +41,7 @@
             dgvDiemSinhVienCuaLop.Location = new Point(42, 153);
             dgvDiemSinhVienCuaLop.Name = "dgvDiemSinhVienCuaLop";
             dgvDiemSinhVienCuaLop.RowHeadersWidth = 51;
-            dgvDiemSinhVienCuaLop.Size = new Size(717, 253);
+            dgvDiemSinhVienCuaLop.Size = new Size(940, 253);
             dgvDiemSinhVienCuaLop.TabIndex = 7;
             // 
             // label2
@@ -76,7 +76,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1037, 450);
             Controls.Add(dgvDiemSinhVienCuaLop);
             Controls.Add(label2);
             Controls.Add(label1);

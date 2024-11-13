@@ -63,6 +63,26 @@ namespace QLDiemSVKhoaCNNT.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Fit_23_nam {
+            get {
+                object obj = ResourceManager.GetObject("Fit-23-nam", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap hcm_ute_cover {
+            get {
+                object obj = ResourceManager.GetObject("hcm_ute_cover", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap UTELogo {
             get {
                 object obj = ResourceManager.GetObject("UTELogo", resourceCulture);

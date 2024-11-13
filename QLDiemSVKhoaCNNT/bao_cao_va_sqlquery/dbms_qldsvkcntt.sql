@@ -971,10 +971,9 @@ BEGIN
         DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
         RAISERROR(@ErrorMessage, 16, 1);
     END CATCH
-
 END;
 
-go
+GO
 CREATE PROCEDURE proc_XemKetQuaHocTapCuaLop
     @MaLopHoc INT
 AS
@@ -1065,6 +1064,35 @@ BEGIN
         lh.Thu, lh.TietBatDau;
 END;
 
+GO
+CREATE PROCEDURE proc_GiangVienDayMonHocVoiSoSVDangKyCaoNhat
+AS
+BEGIN
+    -- Tìm thông tin giảng viên, môn học và số lượng sinh viên đăng ký
+    SELECT 
+        gv.MaGiangVien,
+        gv.HoVaTen AS TenGiangVien,
+        mh.TenMonHoc,
+        COUNT(dk.MaSinhVien) AS SoLuongSinhVien
+    FROM GiangVien gv
+    INNER JOIN LopHoc lh ON gv.MaGiangVien = lh.MaGiangVien
+    INNER JOIN MonHoc mh ON lh.MaMonHoc = mh.MaMonHoc
+    INNER JOIN DangKy dk ON lh.MaLopHoc = dk.MaLopHoc
+    GROUP BY gv.MaGiangVien, gv.HoVaTen, mh.TenMonHoc
+    HAVING COUNT(dk.MaSinhVien) = (
+        -- Truy vấn con để lấy số lượng sinh viên đăng ký cao nhất
+        SELECT MAX(SoLuongSinhVien)
+        FROM (
+            SELECT 
+                COUNT(dk.MaSinhVien) AS SoLuongSinhVien
+            FROM GiangVien gv
+            INNER JOIN LopHoc lh ON gv.MaGiangVien = lh.MaGiangVien
+            INNER JOIN MonHoc mh ON lh.MaMonHoc = mh.MaMonHoc
+            INNER JOIN DangKy dk ON lh.MaLopHoc = dk.MaLopHoc
+            GROUP BY gv.MaGiangVien, gv.HoVaTen, mh.TenMonHoc
+        ) AS SoLuongMax
+    );
+END;
 
 GO
 CREATE FUNCTION dbo.fn_KiemTraQuaMon (
@@ -1195,7 +1223,27 @@ BEGIN
     RETURN @SoLuongSinhVien;
 END;
 
-go
+GO
+CREATE FUNCTION dbo.fn_DemSoLopGiangVienPhuTrach(@MaGiangVien INT)
+RETURNS INT
+AS
+BEGIN
+    -- Input:
+    -- @MaGiangVien: Mã giảng viên cần đếm số lượng lớp học mà họ phụ trách.
+
+    -- Output:
+    -- Trả về số lượng lớp học mà giảng viên có mã @MaGiangVien phụ trách.
+
+    DECLARE @SoLuongLopHoc INT;
+    
+    SELECT @SoLuongLopHoc = COUNT(lh.MaLopHoc)
+    FROM LopHoc lh
+    WHERE lh.MaGiangVien = @MaGiangVien;
+    
+    RETURN @SoLuongLopHoc;
+END;
+
+GO
 CREATE FUNCTION dbo.fn_TinhPhanTramQuaMon(@MaLopHoc INT)
 RETURNS DECIMAL(5, 2)
 AS
@@ -1228,25 +1276,6 @@ BEGIN
     RETURN (@SoLuongQua * 100.0 / @SoLuongSinhVien);
 END;
 
-go
-CREATE FUNCTION dbo.fn_DemSoLopGiangVienPhuTrach(@MaGiangVien INT)
-RETURNS INT
-AS
-BEGIN
-    -- Input:
-    -- @MaGiangVien: Mã giảng viên cần đếm số lượng lớp học mà họ phụ trách.
-
-    -- Output:
-    -- Trả về số lượng lớp học mà giảng viên có mã @MaGiangVien phụ trách.
-
-    DECLARE @SoLuongLopHoc INT;
-    
-    SELECT @SoLuongLopHoc = COUNT(lh.MaLopHoc)
-    FROM LopHoc lh
-    WHERE lh.MaGiangVien = @MaGiangVien;
-    
-    RETURN @SoLuongLopHoc;
-END;
 
 go
 CREATE FUNCTION dbo.fn_LayDanhSachSinhVienTrongLop (
@@ -1401,6 +1430,105 @@ BEGIN
     RETURN @SoLuongLop;
 END;
 
+GO
+CREATE PROCEDURE proc_ChuyenSinhVienSangLopKhac
+    @MaSinhVien INT,            -- Mã sinh viên cần chuyển
+    @MaLopHocCu INT,            -- Mã lớp học hiện tại
+    @MaLopHocMoi INT            -- Mã lớp học đích
+AS
+BEGIN
+    BEGIN TRY
+        -- Bắt đầu transaction
+        BEGIN TRANSACTION;
+
+        -- Kiểm tra sự tồn tại của sinh viên trong lớp cũ
+        IF NOT EXISTS (SELECT 1 FROM DangKy WHERE MaSinhVien = @MaSinhVien AND MaLopHoc = @MaLopHocCu)
+        BEGIN
+            RAISERROR(N'Sinh viên chưa từng đăng ký lớp học %d.', 16, 1, @MaLopHocCu);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- Kiểm tra lớp mới có dạy giống môn của lớp cũ hay không
+        IF NOT EXISTS (SELECT 1 FROM LopHoc lh WHERE lh.MaLopHoc = @MaLopHocMoi)
+        BEGIN
+            RAISERROR(N'Lớp %d học đích không tồn tại.', 16, 1, @MaLopHocMoi);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- Kiểm tra lớp mới có dạy giống môn cũ hay không
+        DECLARE @MaMonCu INT, @MaMonMoi INT;
+        
+        SELECT @MaMonCu = lh.MaMonHoc  
+        FROM DangKy dk 
+        JOIN LopHoc lh ON dk.MaLopHoc = lh.MaLopHoc 
+        WHERE lh.MaLopHoc = @MaLopHocCu;
+
+        SELECT @MaMonMoi = lh.MaMonHoc  
+        FROM DangKy dk 
+        JOIN LopHoc lh ON dk.MaLopHoc = lh.MaLopHoc 
+        WHERE lh.MaLopHoc = @MaLopHocMoi;
+
+        IF (@MaMonCu != @MaMonMoi)
+        BEGIN
+            RAISERROR(N'Lớp mới dạy khác môn mà lớp cũ dạy.', 16, 1);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- Kiểm tra sức chứa của lớp mới và số lượng sinh viên đã đăng ký
+        DECLARE @SucChua INT, @SoSinhVienDangKy INT;
+        
+        SELECT @SucChua = ph.SucChua
+        FROM LopHoc lh
+        INNER JOIN PhongHoc ph ON lh.MaPhongHoc = ph.MaPhongHoc
+        WHERE lh.MaLopHoc = @MaLopHocMoi;
+
+        SELECT @SoSinhVienDangKy = COUNT(*)
+        FROM DangKy
+        WHERE MaLopHoc = @MaLopHocMoi;
+
+        IF @SoSinhVienDangKy >= @SucChua
+        BEGIN
+            RAISERROR(N'Lớp học đích đã đạt sức chứa tối đa.', 16, 1);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        -- Kiểm tra nếu sinh viên đã đăng ký lớp học mới
+        IF (@MaLopHocCu = @MaLopHocMoi)
+        BEGIN
+            RAISERROR(N'Sinh viên đã ở trong lớp cũ rồi.', 16, 1);
+            ROLLBACK TRANSACTION;
+            RETURN;
+        END
+
+        UPDATE DangKy
+        SET MaLopHoc = @MaLopHocMoi
+        WHERE MaSinhVien = @MaSinhVien AND MaLopHoc = @MaLopHocCu
+        /*
+        -- Xóa đăng ký cũ của sinh viên
+        DELETE FROM DangKy
+        WHERE MaSinhVien = @MaSinhVien AND MaLopHoc = @MaLopHocCu;
+
+        -- Thêm đăng ký mới vào lớp đích
+        INSERT INTO DangKy (MaSinhVien, MaLopHoc)
+        VALUES (@MaSinhVien, @MaLopHocMoi);
+        */
+
+        -- Commit transaction nếu không có lỗi
+
+        COMMIT TRANSACTION;
+        PRINT N'Chuyển lớp thành công!';
+    END TRY
+    BEGIN CATCH
+        -- Rollback transaction nếu có lỗi
+        ROLLBACK TRANSACTION;
+        DECLARE @ErrorMessage NVARCHAR(4000) = ERROR_MESSAGE();
+        RAISERROR(@ErrorMessage, 16, 1);
+    END CATCH
+END;
 
 GO
 EXEC proc_ThemSinhVien 1, N'Nguyễn Văn A', 'nguyenvana@gmail.com', '0912345678', N'Hà Nội';

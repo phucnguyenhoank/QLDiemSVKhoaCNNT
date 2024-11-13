@@ -1,5 +1,4 @@
 ﻿using QLDiemSVKhoaCNNT.DAL;
-using QLDiemSVKhoaCNNT.DBConnection;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,37 +12,19 @@ using System.Windows.Forms;
 
 namespace QLDiemSVKhoaCNNT
 {
-    public partial class FrmXemLop : Form
+    public partial class FrmGiangVienDayLopNhieuDKNhat : Form
     {
-        public FrmXemLop()
+        public FrmGiangVienDayLopNhieuDKNhat()
         {
             InitializeComponent();
         }
 
-        private void FrmXemLop_Load(object sender, EventArgs e)
+        private void FrmGiangVienDayLopNhieuDKNhat_Load(object sender, EventArgs e)
         {
             try
             {
-                ViewDAL viewDAL = new ViewDAL();
-                dgvLopHoc.DataSource = viewDAL.GetViewLopHoc();
-
-            }
-            catch (SqlException sqlEx)
-            {
-                MessageBox.Show(sqlEx.Message, "Lỗi từ SQL Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnXemLopTrong_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                FrmLopHocTrong frmLopHocTrong = new FrmLopHocTrong();
-                frmLopHocTrong.ShowDialog();
+                ProcedureDAL procedureDAL = new ProcedureDAL();
+                dgvGVDayLopNhieuDKNhat.DataSource = procedureDAL.GetGiangVienDayMonHocVoiSoSVDangKyCaoNhat();
             }
             catch (SqlException sqlEx)
             {

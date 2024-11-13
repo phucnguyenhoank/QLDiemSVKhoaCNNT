@@ -12,7 +12,7 @@ namespace QLDiemSVKhoaCNNT.DBConnection
     internal class QLDSVCNTTConnection
     {
         public static string connectionString = "";
-        public QLDSVCNTTConnection(string username="sa", string password="1234")
+        public QLDSVCNTTConnection(string username= "mainad1", string password="1234")
         {
             connectionString = $@"Data Source=xichxo;Initial Catalog=QLDiemSVKhoaCNTT;User ID={username};Password={password};TrustServerCertificate=True";
         }

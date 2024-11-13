@@ -54,6 +54,7 @@
             btnXemLopTrong = new Button();
             btnDangKySVvaoLop = new Button();
             btnXemBangDiemCuaLop = new Button();
+            btnChuyenLop = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvLopHoc).BeginInit();
             SuspendLayout();
             // 
@@ -302,11 +303,22 @@
             btnXemBangDiemCuaLop.UseVisualStyleBackColor = true;
             btnXemBangDiemCuaLop.Click += btnXemBangDiemCuaLop_Click;
             // 
+            // btnChuyenLop
+            // 
+            btnChuyenLop.Location = new Point(426, 478);
+            btnChuyenLop.Name = "btnChuyenLop";
+            btnChuyenLop.Size = new Size(136, 29);
+            btnChuyenLop.TabIndex = 87;
+            btnChuyenLop.Text = "Chuyển lớp";
+            btnChuyenLop.UseVisualStyleBackColor = true;
+            btnChuyenLop.Click += btnChuyenLop_Click;
+            // 
             // FrmQLLopHoc
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1282, 551);
+            Controls.Add(btnChuyenLop);
             Controls.Add(btnXemBangDiemCuaLop);
             Controls.Add(btnDangKySVvaoLop);
             Controls.Add(btnXemLopTrong);
@@ -369,5 +381,6 @@
         private Button btnXemLopTrong;
         private Button btnDangKySVvaoLop;
         private Button btnXemBangDiemCuaLop;
+        private Button btnChuyenLop;
     }
 }

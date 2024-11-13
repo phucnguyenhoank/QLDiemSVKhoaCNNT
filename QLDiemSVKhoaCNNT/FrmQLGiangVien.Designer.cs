@@ -46,6 +46,7 @@
             label2 = new Label();
             btnKiemTraQuaMon = new Button();
             btnXemHocLucSV = new Button();
+            btnGiangVienDayNhieuDKNhat = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvGiangVien).BeginInit();
             SuspendLayout();
             // 
@@ -209,11 +210,22 @@
             btnXemHocLucSV.UseVisualStyleBackColor = true;
             btnXemHocLucSV.Click += btnXemHocLucSV_Click;
             // 
+            // btnGiangVienDayNhieuDKNhat
+            // 
+            btnGiangVienDayNhieuDKNhat.Location = new Point(314, 459);
+            btnGiangVienDayNhieuDKNhat.Name = "btnGiangVienDayNhieuDKNhat";
+            btnGiangVienDayNhieuDKNhat.Size = new Size(294, 29);
+            btnGiangVienDayNhieuDKNhat.TabIndex = 57;
+            btnGiangVienDayNhieuDKNhat.Text = "Giảng viên dạy lớp nhiều đăng ký nhất";
+            btnGiangVienDayNhieuDKNhat.UseVisualStyleBackColor = true;
+            btnGiangVienDayNhieuDKNhat.Click += btnGiangVienDayNhieuDKNhat_Click;
+            // 
             // FrmQLGiangVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1261, 595);
+            Controls.Add(btnGiangVienDayNhieuDKNhat);
             Controls.Add(btnXemHocLucSV);
             Controls.Add(btnKiemTraQuaMon);
             Controls.Add(label2);
@@ -259,5 +271,6 @@
         private Label label2;
         private Button btnKiemTraQuaMon;
         private Button btnXemHocLucSV;
+        private Button btnGiangVienDayNhieuDKNhat;
     }
 }
