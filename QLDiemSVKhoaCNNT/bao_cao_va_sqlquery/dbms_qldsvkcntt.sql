@@ -1068,30 +1068,30 @@ GO
 CREATE PROCEDURE proc_GiangVienDayMonHocVoiSoSVDangKyCaoNhat
 AS
 BEGIN
-    -- Tìm thông tin giảng viên, môn học và số lượng sinh viên đăng ký
+    -- Tạo CTE để tính số lượng sinh viên đăng ký cho mỗi giảng viên và môn học
+    WITH SoLuongSinhVien AS (
+        SELECT 
+            gv.MaGiangVien,
+            gv.HoVaTen AS TenGiangVien,
+            lh.MaLopHoc,
+            mh.TenMonHoc,
+            COUNT(dk.MaSinhVien) AS SoLuongSinhVien
+        FROM GiangVien gv
+        INNER JOIN LopHoc lh ON gv.MaGiangVien = lh.MaGiangVien
+        INNER JOIN MonHoc mh ON lh.MaMonHoc = mh.MaMonHoc
+        INNER JOIN DangKy dk ON lh.MaLopHoc = dk.MaLopHoc
+        GROUP BY gv.MaGiangVien, lh.MaLopHoc, gv.HoVaTen, mh.TenMonHoc
+    )
+
+    -- Tìm số lượng sinh viên đăng ký cao nhất
     SELECT 
-        gv.MaGiangVien,
-        gv.HoVaTen AS TenGiangVien,
-        mh.TenMonHoc,
-        COUNT(dk.MaSinhVien) AS SoLuongSinhVien
-    FROM GiangVien gv
-    INNER JOIN LopHoc lh ON gv.MaGiangVien = lh.MaGiangVien
-    INNER JOIN MonHoc mh ON lh.MaMonHoc = mh.MaMonHoc
-    INNER JOIN DangKy dk ON lh.MaLopHoc = dk.MaLopHoc
-    GROUP BY gv.MaGiangVien, gv.HoVaTen, mh.TenMonHoc
-    HAVING COUNT(dk.MaSinhVien) = (
-        -- Truy vấn con để lấy số lượng sinh viên đăng ký cao nhất
-        SELECT MAX(SoLuongSinhVien)
-        FROM (
-            SELECT 
-                COUNT(dk.MaSinhVien) AS SoLuongSinhVien
-            FROM GiangVien gv
-            INNER JOIN LopHoc lh ON gv.MaGiangVien = lh.MaGiangVien
-            INNER JOIN MonHoc mh ON lh.MaMonHoc = mh.MaMonHoc
-            INNER JOIN DangKy dk ON lh.MaLopHoc = dk.MaLopHoc
-            GROUP BY gv.MaGiangVien, gv.HoVaTen, mh.TenMonHoc
-        ) AS SoLuongMax
-    );
+        MaGiangVien, 
+        TenGiangVien, 
+        MaLopHoc,
+        TenMonHoc, 
+        SoLuongSinhVien
+    FROM SoLuongSinhVien
+    WHERE SoLuongSinhVien = (SELECT MAX(SoLuongSinhVien) FROM SoLuongSinhVien);
 END;
 
 GO
