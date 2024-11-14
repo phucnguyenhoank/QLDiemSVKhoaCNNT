@@ -16,7 +16,7 @@ namespace QLDiemSVKhoaCNNT
         {
             InitializeComponent();
             txtUsername.Text = "mainad1";
-            txtPassword.Text = "1234";
+            txtPassword.Text = "#kcmtl5cM";
         }
 
         public string getUserName()

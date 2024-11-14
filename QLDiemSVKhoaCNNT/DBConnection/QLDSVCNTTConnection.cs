@@ -12,9 +12,17 @@ namespace QLDiemSVKhoaCNNT.DBConnection
     internal class QLDSVCNTTConnection
     {
         public static string connectionString = "";
-        public QLDSVCNTTConnection(string username= "mainad1", string password="1234")
+        public QLDSVCNTTConnection(string username= "mainad1", string password= "#kcmtl5cM")
         {
-            connectionString = $@"Data Source=xichxo;Initial Catalog=QLDiemSVKhoaCNTT;User ID={username};Password={password};TrustServerCertificate=True";
+            connectionString = "Server=mssql-187115-0.cloudclusters.net,10204;" +
+                          "Initial Catalog=QLDiemSVKhoaCNTT;" +
+                          "Persist Security Info=False;" +
+                          $"User ID={username};" +
+                          $"Password={password};" +
+                          "MultipleActiveResultSets=False;" +
+                          "Encrypt=True;" +
+                          "TrustServerCertificate=True;" +
+                          "Connection Timeout=30;";
         }
 
         /// <summary>
