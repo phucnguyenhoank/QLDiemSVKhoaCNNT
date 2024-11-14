@@ -21,11 +21,6 @@ namespace QLDiemSVKhoaCNNT
             InitializeComponent();
         }
 
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
             string maGiangVienTimKiem = textBox1.Text.Trim(); // Lấy mã sinh viên từ TextBox
@@ -75,7 +70,6 @@ namespace QLDiemSVKhoaCNNT
         {
             try
             {
-
                 // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
                 if (e.RowIndex >= 0)
                 {
@@ -138,9 +132,7 @@ namespace QLDiemSVKhoaCNNT
                         cbxMaPhongHoc.SelectedIndex = 0;
                     }
                 }
-
                 dgvLopHoc.DataSource = viewDAL.GetViewLopHoc();
-
             }
             catch (SqlException sqlEx)
             {
@@ -174,7 +166,6 @@ namespace QLDiemSVKhoaCNNT
                 {
                     MessageBox.Show($"Thêm lớp học {MaLopHoc} thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
             }
             catch (SqlException sqlEx)
             {
