@@ -198,7 +198,6 @@
             label8.Size = new Size(95, 20);
             label8.TabIndex = 74;
             label8.Text = "Mã môn học:";
-            label8.Click += label8_Click;
             // 
             // cbxTietBatDau
             // 

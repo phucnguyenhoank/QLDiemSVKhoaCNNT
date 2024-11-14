@@ -65,23 +65,35 @@ namespace QLDiemSVKhoaCNNT
 
         private void dgvSinhVien_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
-            if (e.RowIndex >= 0)
+            try
             {
-                // Lấy dòng hiện tại
-                DataGridViewRow row = dgvSinhVien.Rows[e.RowIndex];
+                // Kiểm tra xem có phải dòng hợp lệ hay không (dòng tiêu đề không hợp lệ)
+                if (e.RowIndex >= 0)
+                {
+                    // Lấy dòng hiện tại
+                    DataGridViewRow row = dgvSinhVien.Rows[e.RowIndex];
 
-                // Gán giá trị từ các ô của dòng vào các TextBox
-                txtMaSinhVien.Text = row.Cells["MaSinhVien"].Value.ToString();
-                txtHoVaTen.Text = row.Cells["HoVaTen"].Value.ToString();
-                txtEmail.Text = row.Cells["Email"].Value.ToString();
-                txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
-                txtQueQuan.Text = row.Cells["QueQuan"].Value.ToString();
+                    // Gán giá trị từ các ô của dòng vào các TextBox
+                    txtMaSinhVien.Text = row.Cells["MaSinhVien"].Value.ToString();
+                    txtHoVaTen.Text = row.Cells["HoVaTen"].Value.ToString();
+                    txtEmail.Text = row.Cells["Email"].Value.ToString();
+                    txtSoDienThoai.Text = row.Cells["SoDienThoai"].Value.ToString();
+                    txtQueQuan.Text = row.Cells["QueQuan"].Value.ToString();
 
-                FunctionDAL functionDAL = new FunctionDAL();
-                lblSoLuongLop1SinhVienDangKy.Text = "Đã đăng ký " + functionDAL.SoLuongLopSVDangKy(Convert.ToInt32(row.Cells["MaSinhVien"].Value.ToString())) + " lớp";
+                    FunctionDAL functionDAL = new FunctionDAL();
+                    lblSoLuongLop1SinhVienDangKy.Text = "Đã đăng ký " + functionDAL.SoLuongLopSVDangKy(Convert.ToInt32(row.Cells["MaSinhVien"].Value.ToString())) + " lớp";
 
+                }
             }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show(sqlEx.Message, "Lỗi sql", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void FrmQLSinhVien_Load(object sender, EventArgs e)

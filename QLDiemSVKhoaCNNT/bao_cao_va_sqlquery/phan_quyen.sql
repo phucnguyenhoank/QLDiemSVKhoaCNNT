@@ -52,6 +52,7 @@ GRANT EXECUTE ON dbo.proc_ThemGiangVien TO AdminGVRole;
 GRANT EXECUTE ON dbo.proc_SuaGiangVien TO AdminGVRole;
 GRANT EXECUTE ON dbo.fn_KiemTraQuaMon TO AdminGVRole;
 GRANT EXECUTE ON dbo.fn_XemHocLucSinhVien TO AdminGVRole;
+GRANT EXECUTE ON dbo.proc_GiangVienDayMonHocVoiSoSVDangKyCaoNhat TO AdminGVRole;
 
 -- admin mon hoc
 GRANT SELECT ON dbo.vw_MonHoc TO AdminMHRole;
@@ -76,6 +77,7 @@ GRANT EXECUTE ON proc_XemKetQuaHocTapCuaLop TO AdminLHRole;
 GRANT EXECUTE ON dbo.fn_DemSoLopGiangVienPhuTrach TO AdminLHRole;
 GRANT EXECUTE ON dbo.fn_DemSoLuongSinhVienCuaLop TO AdminLHRole;
 GRANT EXECUTE ON dbo.fn_TinhPhanTramQuaMon TO AdminLHRole;
+GRANT EXECUTE ON dbo.proc_ChuyenSinhVienSangLopKhac TO AdminLHRole;
 
 -- main admin
 ALTER ROLE db_owner ADD MEMBER MainAdminRole;
@@ -99,5 +101,3 @@ GRANT EXECUTE ON dbo.sp_send_dbmail TO MainAdminRole;
 -- thêm user vào các role
 ALTER ROLE AdminSVRole ADD MEMBER adsv1;
 ALTER ROLE MainAdminRole ADD MEMBER mainad1;
-
-
